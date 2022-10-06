@@ -1,3 +1,4 @@
+import 'package:battleships/deneme.dart';
 import 'package:battleships/ships.dart';
 import 'package:flutter/material.dart';
 
@@ -56,10 +57,11 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(8.0),
               child: Container(
                 color: Colors.brown[100],
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SmallShip(),
                     SizedBox(
@@ -69,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       width: 10,
                     ),
-                    BigShip()
+                    BigShip(),
                   ],
                 ),
               ),

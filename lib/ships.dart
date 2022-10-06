@@ -5,6 +5,8 @@ double bigShipHeight = 166;
 double mediumShipHeight = 133;
 double smallShipHeight = 100;
 
+ImageProvider<Object> shipImage = AssetImage('lib/assets/images/shipImage.png');
+
 class BigShip extends StatelessWidget {
   const BigShip({super.key});
 
@@ -12,18 +14,22 @@ class BigShip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Draggable(
       feedback: Container(
-        color: Colors.orange,
-        width: shipsWidth,
-        height: bigShipHeight,
-      ),
+          width: shipsWidth,
+          height: bigShipHeight,
+          child: Image(
+            image: shipImage,
+            fit: BoxFit.fill,
+          )),
       childWhenDragging: Container(
         color: Colors.brown[100],
       ),
       child: Container(
-        color: Colors.green,
-        width: shipsWidth,
-        height: bigShipHeight,
-      ),
+          width: shipsWidth,
+          height: bigShipHeight,
+          child: Image(
+            image: shipImage,
+            fit: BoxFit.fill,
+          )),
     );
   }
 }
@@ -35,18 +41,22 @@ class MediumShip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Draggable(
       feedback: Container(
-        color: Colors.orange,
-        width: shipsWidth,
-        height: mediumShipHeight,
-      ),
+          width: shipsWidth,
+          height: mediumShipHeight,
+          child: Image(
+            image: shipImage,
+            fit: BoxFit.fill,
+          )),
       childWhenDragging: Container(
         color: Colors.brown[100],
       ),
       child: Container(
-        color: Colors.green,
-        width: shipsWidth,
-        height: mediumShipHeight,
-      ),
+          width: shipsWidth,
+          height: mediumShipHeight,
+          child: Image(
+            image: shipImage,
+            fit: BoxFit.fill,
+          )),
     );
   }
 }
@@ -58,18 +68,22 @@ class SmallShip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Draggable(
       feedback: Container(
-        color: Colors.orange,
-        width: shipsWidth,
-        height: smallShipHeight,
-      ),
+          width: shipsWidth,
+          height: smallShipHeight,
+          child: Image(
+            image: shipImage,
+            fit: BoxFit.fill,
+          )),
       childWhenDragging: Container(
         color: Colors.brown[100],
       ),
       child: Container(
-        color: Colors.green,
-        width: shipsWidth,
-        height: smallShipHeight,
-      ),
+          width: shipsWidth,
+          height: smallShipHeight,
+          child: Image(
+            image: shipImage,
+            fit: BoxFit.fill,
+          )),
     );
   }
 }
