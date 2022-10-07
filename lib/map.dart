@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+//
 
-List<int> oneRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+List matrixList =
+    List.generate(10, (i) => List.filled(10, Colors.blue), growable: false);
+
+//
+List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 List<Color> voidColorsList = [];
 
@@ -11,8 +16,6 @@ forFunc() {
   ;
 }
 
-Color colorVoid = Colors.black;
-
 class MyMap extends StatefulWidget {
   const MyMap({super.key});
 
@@ -22,32 +25,28 @@ class MyMap extends StatefulWidget {
 
 class _MyMapState extends State<MyMap> {
   @override
-  void initState() {
-    forFunc();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
+        child: Row(
           children: [
-            Row(
-              children: [
-                for (var i in oneRow)
-                  DragTarget<Color>(
-                    onAccept: (data) =>
-                        setState(() => voidColorsList[i] = data),
-                    builder: (context, _, __) => Container(
-                      width: 25,
-                      height: 34,
-                      color: voidColorsList[i],
-                      margin: EdgeInsets.symmetric(horizontal: 3.0),
+            for (int x in oneToTenList)
+              Column(
+                children: [
+                  for (int y in oneToTenList)
+                    DragTarget<Color>(
+                      onAccept: (data) =>
+                          setState(() => matrixList[x][y] = data),
+                      builder: (context, _, __) => Container(
+                        width: 25,
+                        height: 34,
+                        color: matrixList[x][y],
+                        margin: EdgeInsets.all(3),
+                      ),
                     ),
-                  ),
-              ],
-            ),
+                ],
+              ),
           ],
         ),
       ),
