@@ -68,7 +68,11 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       width: 10,
                     ),
-                    MediumShip(),
+                    SmallShip(),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    BigShip(),
                     SizedBox(
                       width: 10,
                     ),

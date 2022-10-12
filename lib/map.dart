@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:battleships/shipsandrotate.dart';
-//
 
+Color bigShipColor = Colors.brown;
+Color smallShipColor = Colors.yellow;
+//
+Color mapColor = Colors.blue;
 List matrixList =
-    List.generate(10, (i) => List.filled(10, Colors.blue), growable: false);
+    List.generate(10, (i) => List.filled(10, mapColor), growable: false);
 
 //
 List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -39,16 +42,24 @@ class _MyMapState extends State<MyMap> {
                       onAccept: (data) {
                         setState(() {
                           if (data == Colors.red[400]) {
-                            for (int i = 2; i > -3; i--) {
-                              matrixList[x][y - i] = Colors.brown;
-                            }
-                          } else if (data == Colors.red[300]) {
-                            for (int i = 1; i > -3; i--) {
-                              matrixList[x][y - i] = Colors.orange;
+                            if (isSmallShipRotate == 1) {
+                              for (int i = 2; i > -3; i--) {
+                                matrixList[x][y - i] = bigShipColor;
+                              }
+                            } else {
+                              for (int i = 2; i > -3; i--) {
+                                matrixList[x - i][y] = bigShipColor;
+                              }
                             }
                           } else if (data == Colors.red[200]) {
-                            for (int i = 1; i > -2; i--) {
-                              matrixList[x][y - i] = Colors.yellow;
+                            if (isSmallShipRotate == 1) {
+                              for (int i = 1; i > -2; i--) {
+                                matrixList[x][y - i] = smallShipColor;
+                              }
+                            } else {
+                              for (int i = 1; i > -2; i--) {
+                                matrixList[x - i][y] = smallShipColor;
+                              }
                             }
                           }
                         });
