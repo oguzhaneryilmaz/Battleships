@@ -24,10 +24,18 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
   AnimationController? animationController2;
   AnimationController? animationController3;
   AnimationController? animationController4;
+  AnimationController? animationController5;
+  AnimationController? animationController6;
+  AnimationController? animationController7;
+  AnimationController? animationController8;
   Animation<double>? animation1;
   Animation<double>? animation2;
   Animation<double>? animation3;
   Animation<double>? animation4;
+  Animation<double>? animation5;
+  Animation<double>? animation6;
+  Animation<double>? animation7;
+  Animation<double>? animation8;
   int rotateTime = 0;
 
   @override
@@ -40,6 +48,7 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     animationController4 =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+
     animation1 =
         Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
     animation2 =
@@ -47,6 +56,14 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
     animation3 = Tween<double>(begin: pi, end: pi + pi / 2)
         .animate(animationController3!);
     animation4 = Tween<double>(begin: pi + pi / 2, end: pi + pi)
+        .animate(animationController4!);
+    animation5 =
+        Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
+    animation6 =
+        Tween<double>(begin: pi / 2, end: pi).animate(animationController2!);
+    animation7 = Tween<double>(begin: pi, end: pi + pi / 2)
+        .animate(animationController3!);
+    animation8 = Tween<double>(begin: pi + pi / 2, end: pi + pi)
         .animate(animationController4!);
     super.initState();
   }
@@ -81,9 +98,14 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
       feedback: Container(
         width: shipsWidth,
         height: smallShipHeight,
-        child: Image(
-          image: shipImage,
-          fit: BoxFit.fill,
+        child: GestureDetector(
+          onTap: _rotateChildContinuously,
+          child: RotateTrans(
+              Image(
+                image: shipImage,
+                fit: BoxFit.fill,
+              ),
+              buildAnimation2()),
         ),
       ),
     );
@@ -128,6 +150,22 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
     isSmallShipRotate = 1;
     return animation4!;
   }
+
+  Animation<double> buildAnimation2() {
+    if (rotateTime == 0) {
+    } else if (rotateTime == 1) {
+      return animation5!;
+    } else if (rotateTime == 2) {
+      return animation6!;
+    } else if (rotateTime == 3) {
+      return animation7!;
+    } else if (rotateTime == 4) {
+      rotateTime = 0;
+      return animation8!;
+    }
+
+    return animation5!;
+  }
 }
 
 class BigShip extends StatefulWidget {
@@ -140,10 +178,18 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
   AnimationController? animationController2;
   AnimationController? animationController3;
   AnimationController? animationController4;
+  AnimationController? animationController5;
+  AnimationController? animationController6;
+  AnimationController? animationController7;
+  AnimationController? animationController8;
   Animation<double>? animation1;
   Animation<double>? animation2;
   Animation<double>? animation3;
   Animation<double>? animation4;
+  Animation<double>? animation5;
+  Animation<double>? animation6;
+  Animation<double>? animation7;
+  Animation<double>? animation8;
   int rotateTime = 0;
 
   @override
@@ -156,6 +202,14 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     animationController4 =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    animationController5 =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
+    animationController6 =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
+    animationController7 =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
+    animationController8 =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
     animation1 =
         Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
     animation2 =
@@ -164,6 +218,15 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
         .animate(animationController3!);
     animation4 = Tween<double>(begin: pi + pi / 2, end: pi + pi)
         .animate(animationController4!);
+    animation5 =
+        Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
+    animation6 =
+        Tween<double>(begin: pi / 2, end: pi).animate(animationController2!);
+    animation7 = Tween<double>(begin: pi, end: pi + pi / 2)
+        .animate(animationController3!);
+    animation8 = Tween<double>(begin: pi + pi / 2, end: pi + pi)
+        .animate(animationController4!);
+    super.initState();
     super.initState();
   }
 
@@ -197,9 +260,14 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
       feedback: Container(
         width: shipsWidth,
         height: bigShipHeight,
-        child: Image(
-          image: shipImage,
-          fit: BoxFit.fill,
+        child: GestureDetector(
+          onTap: _rotateChildContinuously,
+          child: RotateTrans(
+              Image(
+                image: shipImage,
+                fit: BoxFit.fill,
+              ),
+              buildAnimation2()),
         ),
       ),
     );
@@ -219,6 +287,21 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
         animationController4!.forward(from: 0);
       }
     });
+  }
+
+  Animation<double> buildAnimation2() {
+    if (rotateTime == 0 || rotateTime == 1) {
+      return animation5!;
+    } else if (rotateTime == 2) {
+      return animation6!;
+    } else if (rotateTime == 3) {
+      return animation7!;
+    } else if (rotateTime == 4) {
+      rotateTime = 0;
+      return animation8!;
+    }
+
+    return animation5!;
   }
 
   Animation<double> buildAnimation() {

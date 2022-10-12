@@ -39,6 +39,24 @@ class _MyMapState extends State<MyMap> {
                         color: matrixList[x][y],
                         margin: EdgeInsets.all(3),
                       ),
+                      onMove: (details) {
+                        if (matrixList[x][y] == bigShipColor) {
+                          matrixList[x][y] = bigShipColor;
+                        } else if (matrixList[x][y] == smallShipColor) {
+                          matrixList[x][y] = smallShipColor;
+                        } else {
+                          matrixList[x][y] = Colors.green;
+                        }
+                      },
+                      onLeave: (data) {
+                        if (matrixList[x][y] == bigShipColor) {
+                          matrixList[x][y] = bigShipColor;
+                        } else if (matrixList[x][y] == smallShipColor) {
+                          matrixList[x][y] = smallShipColor;
+                        } else {
+                          matrixList[x][y] = mapColor;
+                        }
+                      },
                       onAccept: (data) {
                         setState(() {
                           if (data == Colors.red[400]) {
