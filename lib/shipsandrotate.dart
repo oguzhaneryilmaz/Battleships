@@ -54,7 +54,7 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Draggable(
-      data: Colors.red,
+      data: Colors.red[200],
       child: Container(
         width: shipsWidth,
         height: smallShipHeight,
@@ -160,7 +160,7 @@ class _MediumShipState extends State<MediumShip> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Draggable(
-      data: Colors.red,
+      data: Colors.red[300],
       child: Container(
         width: shipsWidth,
         height: mediumShipHeight,
@@ -266,7 +266,7 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Draggable(
-      data: Colors.red,
+      data: Colors.red[400],
       child: Container(
         width: shipsWidth,
         height: bigShipHeight,

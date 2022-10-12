@@ -1,5 +1,5 @@
-import 'package:battleships/deneme.dart';
 import 'package:flutter/material.dart';
+import 'package:battleships/shipsandrotate.dart';
 //
 
 List matrixList =
@@ -38,8 +38,18 @@ class _MyMapState extends State<MyMap> {
                       ),
                       onAccept: (data) {
                         setState(() {
-                          for (int i = 2; i > -3; i--) {
-                            matrixList[x][y - i] = data;
+                          if (data == Colors.red[400]) {
+                            for (int i = 2; i > -3; i--) {
+                              matrixList[x][y - i] = Colors.brown;
+                            }
+                          } else if (data == Colors.red[300]) {
+                            for (int i = 1; i > -3; i--) {
+                              matrixList[x][y - i] = Colors.orange;
+                            }
+                          } else if (data == Colors.red[200]) {
+                            for (int i = 1; i > -2; i--) {
+                              matrixList[x][y - i] = Colors.yellow;
+                            }
                           }
                         });
                       },
@@ -52,3 +62,11 @@ class _MyMapState extends State<MyMap> {
     );
   }
 }
+
+//
+//
+//
+//   GEMİLER VE ROTATE FONKSİYONU
+//
+//
+//

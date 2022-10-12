@@ -1,6 +1,6 @@
-import 'package:battleships/deneme.dart';
 import 'package:battleships/map.dart';
 import 'package:flutter/material.dart';
+import 'package:battleships/shipsandrotate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
