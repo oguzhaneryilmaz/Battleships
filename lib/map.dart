@@ -1,3 +1,4 @@
+import 'package:battleships/deneme.dart';
 import 'package:flutter/material.dart';
 //
 
@@ -8,13 +9,6 @@ List matrixList =
 List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 List<Color> voidColorsList = [];
-
-forFunc() {
-  for (int i = 0; i < 10; i++) {
-    voidColorsList.add(Colors.blue);
-  }
-  ;
-}
 
 class MyMap extends StatefulWidget {
   const MyMap({super.key});
@@ -36,14 +30,19 @@ class _MyMapState extends State<MyMap> {
                 children: [
                   for (int y in oneToTenList)
                     DragTarget<Color>(
-                      onAccept: (data) =>
-                          setState(() => matrixList[x][y] = data),
                       builder: (context, _, __) => Container(
                         width: 25,
                         height: 34,
                         color: matrixList[x][y],
                         margin: EdgeInsets.all(3),
                       ),
+                      onAccept: (data) {
+                        setState(() {
+                          for (int i = 2; i > -3; i--) {
+                            matrixList[x][y - i] = data;
+                          }
+                        });
+                      },
                     ),
                 ],
               ),
