@@ -60,23 +60,49 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                color: Colors.brown[100],
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                color: Colors.brown[200],
+                child: Column(
                   children: [
-                    SmallShip(),
-                    SizedBox(
-                      width: 10,
+                    Expanded(
+                      flex: 4,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 40,
+                          ),
+                          Container(
+                            width: 30,
+                            child: SmallShip(),
+                          ),
+                          SizedBox(
+                            width: 70,
+                          ),
+                          Container(
+                            width: 30,
+                            child: SmallShip2(),
+                          ),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Container(
+                            width: 30,
+                            child: BigShip(),
+                          ),
+                        ],
+                      ),
                     ),
-                    SmallShip(),
-                    SizedBox(
-                      width: 10,
+                    Expanded(
+                      child: Container(
+                        color: Colors.red,
+                        child: Text(
+                          "START",
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Color.fromARGB(255, 71, 21, 4),
+                          ),
+                        ),
+                      ),
                     ),
-                    BigShip(),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    BigShip(),
                   ],
                 ),
               ),

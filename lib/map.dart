@@ -3,11 +3,11 @@ import 'package:battleships/shipsandrotate.dart';
 
 Color bigShipColor = Colors.brown;
 Color smallShipColor = Colors.yellow;
+Color smallShip2Color = Colors.purple;
 //
 Color mapColor = Colors.blue;
 List matrixList =
     List.generate(10, (i) => List.filled(10, mapColor), growable: false);
-
 //
 List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -33,17 +33,22 @@ class _MyMapState extends State<MyMap> {
                 children: [
                   for (int y in oneToTenList)
                     DragTarget<Color>(
-                      builder: (context, _, __) => Container(
-                        width: 25,
-                        height: 34,
-                        color: matrixList[x][y],
-                        margin: EdgeInsets.all(3),
+                      builder: (context, _, __) => ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          width: 25,
+                          height: 34,
+                          color: matrixList[x][y],
+                          margin: EdgeInsets.all(3),
+                        ),
                       ),
                       onMove: (details) {
                         if (matrixList[x][y] == bigShipColor) {
                           matrixList[x][y] = bigShipColor;
                         } else if (matrixList[x][y] == smallShipColor) {
                           matrixList[x][y] = smallShipColor;
+                        } else if (matrixList[x][y] == smallShip2Color) {
+                          matrixList[x][y] = smallShip2Color;
                         } else {
                           matrixList[x][y] = Colors.green;
                         }
@@ -53,6 +58,8 @@ class _MyMapState extends State<MyMap> {
                           matrixList[x][y] = bigShipColor;
                         } else if (matrixList[x][y] == smallShipColor) {
                           matrixList[x][y] = smallShipColor;
+                        } else if (matrixList[x][y] == smallShip2Color) {
+                          matrixList[x][y] = smallShip2Color;
                         } else {
                           matrixList[x][y] = mapColor;
                         }
@@ -60,7 +67,7 @@ class _MyMapState extends State<MyMap> {
                       onAccept: (data) {
                         setState(() {
                           if (data == Colors.red[400]) {
-                            if (isSmallShipRotate == 1) {
+                            if (isBigShipRotate == 1) {
                               for (int i = 2; i > -3; i--) {
                                 matrixList[x][y - i] = bigShipColor;
                               }
@@ -79,6 +86,16 @@ class _MyMapState extends State<MyMap> {
                                 matrixList[x - i][y] = smallShipColor;
                               }
                             }
+                          } else if (data == Colors.red[300]) {
+                            if (isSmallShip2Rotate == 1) {
+                              for (int i = 1; i > -2; i--) {
+                                matrixList[x][y - i] = smallShip2Color;
+                              }
+                            } else {
+                              for (int i = 1; i > -2; i--) {
+                                matrixList[x - i][y] = smallShip2Color;
+                              }
+                            }
                           }
                         });
                       },
@@ -91,11 +108,3 @@ class _MyMapState extends State<MyMap> {
     );
   }
 }
-
-//
-//
-//
-//   GEMİLER VE ROTATE FONKSİYONU
-//
-//
-//
