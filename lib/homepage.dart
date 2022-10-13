@@ -1,3 +1,4 @@
+import 'tempfornow.dart';
 import 'package:battleships/map.dart';
 import 'package:flutter/material.dart';
 import 'package:battleships/shipsandrotate.dart';
@@ -92,13 +93,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        color: Colors.red,
-                        child: Text(
-                          "START",
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Color.fromARGB(255, 71, 21, 4),
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GamePage())),
+                        child: Container(
+                          color: Colors.red,
+                          child: Text(
+                            "START",
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Color.fromARGB(255, 71, 21, 4),
+                            ),
                           ),
                         ),
                       ),
