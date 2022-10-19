@@ -1,4 +1,6 @@
 import 'package:battleships/map.dart';
+import 'defineLists.dart';
+import 'package:battleships/pixel.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/src/widgets/container.dart';
@@ -10,9 +12,12 @@ class GameStarted extends StatefulWidget {
 }
 
 class _GameStartedState extends State<GameStarted> {
-  String trueContainerSelected = "first";
-  String falseContainerSelected = "first";
   int numberOfSquares = 100;
+  int clickedContainer = 0;
+
+  Color hitShipColor = Colors.red;
+  Color hitSeaColor = Colors.yellow;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,57 +39,47 @@ class _GameStartedState extends State<GameStarted> {
                     BuildContext context,
                     int index,
                   ) {
-                    if (dummyList.contains(index)) {
-                      return Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                trueContainerSelected = "true";
-                              });
-                            },
-                            child: Container(
-                              color: trueContainerSelected == "first"
-                                  ? Colors.blue
-                                  : Colors.red,
-                              child: Text(
-                                1.toString(),
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
+                    for (int i = 0; i < 11; i++) {
+                      if (dummyList[i] == index) {
+                        return MyPixel(
+                          onTap: () {
+                            setState(() {
+                              trueSelected[i] = "second";
+                            });
+                            ;
+                          },
+                          color: trueSelected[i] == "first"
+                              ? mapColor
+                              : hitShipColor,
+                          child: Text(
+                            "1",
+                            style: TextStyle(
+                              fontSize: 25,
                             ),
                           ),
-                        ),
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                falseContainerSelected = "wrong";
-                              });
-                            },
-                            child: Container(
-                              color: falseContainerSelected == "first"
-                                  ? Colors.blue
-                                  : Colors.yellow,
-                              child: Text(
-                                0.toString(),
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
+                        );
+                      }
                     }
+                    for (int i = 0; i < 100; i++) {
+                      if (dummyList[i] != index) {
+                        return MyPixel(
+                          color: wrongSelected[index] == "first"
+                              ? mapColor
+                              : hitSeaColor,
+                          child: Text(
+                            "0",
+                            style: TextStyle(fontSize: 25),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              wrongSelected[index] = "second";
+                            });
+                          },
+                        );
+                      }
+                    }
+
+                    return MyPixel();
                   },
                 ),
               ),
