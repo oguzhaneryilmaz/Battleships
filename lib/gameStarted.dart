@@ -10,10 +10,9 @@ class GameStarted extends StatefulWidget {
 }
 
 class _GameStartedState extends State<GameStarted> {
-  String selected = "first";
+  String trueContainerSelected = "first";
+  String falseContainerSelected = "first";
   int numberOfSquares = 100;
-  int isEmpty = 0;
-  Color isHit = Colors.blue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +42,11 @@ class _GameStartedState extends State<GameStarted> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                selected = "Second";
+                                trueContainerSelected = "true";
                               });
                             },
                             child: Container(
-                              color: selected == "first"
+                              color: trueContainerSelected == "first"
                                   ? Colors.blue
                                   : Colors.red,
                               child: Text(
@@ -60,22 +59,32 @@ class _GameStartedState extends State<GameStarted> {
                           ),
                         ),
                       );
-                    } else
+                    } else {
                       return Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
-                          child: Container(
-                            color: Colors.blue,
-                            child: Text(
-                              isEmpty.toString(),
-                              style: const TextStyle(
-                                fontSize: 25,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                falseContainerSelected = "wrong";
+                              });
+                            },
+                            child: Container(
+                              color: falseContainerSelected == "first"
+                                  ? Colors.blue
+                                  : Colors.yellow,
+                              child: Text(
+                                0.toString(),
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       );
+                    }
                   },
                 ),
               ),
