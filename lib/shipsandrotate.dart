@@ -11,8 +11,10 @@ double smallShip2Height = 100;
 int isBigShipRotate = 0;
 int isSmallShipRotate = 0;
 int isSmallShip2Rotate = 0;
-Color? smallBeforeColor = Colors.red[200];
-Color? small2BeforeColor = Colors.red[300];
+Color? smallBeforeColor = Colors.red[
+    200]; // gemilere farklı renkler verme sebebi => dragTarget-onAccetp fonksiyonunda
+Color? small2BeforeColor =
+    Colors.red[300]; // hangi objenin droplandığını ayırt edebilmek
 Color? bigBeforeColor = Colors.red[400];
 
 ImageProvider<Object> shipImage = AssetImage('lib/assets/images/shipImage.png');
@@ -39,7 +41,7 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
   Animation<double>? animation6;
   Animation<double>? animation7;
   Animation<double>? animation8;
-  int rotateTime = 0;
+  int rotateTime = 0; // objenin kaç defa döndürüldüğü (şu anki durumu)
 
   @override
   void initState() {
@@ -79,36 +81,42 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Draggable(
-      data: small2BeforeColor,
-      child: Container(
-        width: shipsWidth,
-        height: smallShip2Height,
-        child: GestureDetector(
-          onTap: _rotateChildContinuously,
-          child: RotateTrans(
-            Image(
-              image: shipImage,
-              fit: BoxFit.fill,
-            ),
-            buildAnimation(),
-          ),
-        ),
-      ),
-      childWhenDragging: Container(
-        color: Colors.brown[200],
-      ),
-      feedback: Container(
-        width: shipsWidth,
-        height: smallShip2Height,
-        child: GestureDetector(
-          onTap: _rotateChildContinuously,
-          child: RotateTrans(
-              Image(
-                image: shipImage,
-                fit: BoxFit.fill,
+    return IgnorePointer(
+      ignoring: false,
+      child: Opacity(
+        opacity: true ? 1 : 0,
+        child: Draggable(
+          data: small2BeforeColor,
+          child: Container(
+            width: shipsWidth,
+            height: smallShip2Height,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                Image(
+                  image: shipImage,
+                  fit: BoxFit.fill,
+                ),
+                buildAnimation(),
               ),
-              buildAnimation2()),
+            ),
+          ),
+          childWhenDragging: Container(
+            color: Colors.brown[200],
+          ),
+          feedback: Container(
+            width: shipsWidth,
+            height: smallShip2Height,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                  Image(
+                    image: shipImage,
+                    fit: BoxFit.fill,
+                  ),
+                  buildAnimation2()),
+            ),
+          ),
         ),
       ),
     );
@@ -233,36 +241,42 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Draggable(
-      data: smallBeforeColor,
-      child: Container(
-        width: shipsWidth,
-        height: smallShipHeight,
-        child: GestureDetector(
-          onTap: _rotateChildContinuously,
-          child: RotateTrans(
-            Image(
-              image: shipImage,
-              fit: BoxFit.fill,
-            ),
-            buildAnimation(),
-          ),
-        ),
-      ),
-      childWhenDragging: Container(
-        color: Colors.brown[200],
-      ),
-      feedback: Container(
-        width: shipsWidth,
-        height: smallShipHeight,
-        child: GestureDetector(
-          onTap: _rotateChildContinuously,
-          child: RotateTrans(
-              Image(
-                image: shipImage,
-                fit: BoxFit.fill,
+    return IgnorePointer(
+      ignoring: false,
+      child: Opacity(
+        opacity: true ? 1 : 0,
+        child: Draggable(
+          data: smallBeforeColor,
+          child: Container(
+            width: shipsWidth,
+            height: smallShipHeight,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                Image(
+                  image: shipImage,
+                  fit: BoxFit.fill,
+                ),
+                buildAnimation(),
               ),
-              buildAnimation2()),
+            ),
+          ),
+          childWhenDragging: Container(
+            color: Colors.brown[200],
+          ),
+          feedback: Container(
+            width: shipsWidth,
+            height: smallShipHeight,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                  Image(
+                    image: shipImage,
+                    fit: BoxFit.fill,
+                  ),
+                  buildAnimation2()),
+            ),
+          ),
         ),
       ),
     );
@@ -395,36 +409,42 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Draggable(
-      data: bigBeforeColor,
-      child: Container(
-        width: shipsWidth,
-        height: bigShipHeight,
-        child: GestureDetector(
-          onTap: _rotateChildContinuously,
-          child: RotateTrans(
-            Image(
-              image: shipImage,
-              fit: BoxFit.fill,
-            ),
-            buildAnimation(),
-          ),
-        ),
-      ),
-      childWhenDragging: Container(
-        color: Colors.brown[200],
-      ),
-      feedback: Container(
-        width: shipsWidth,
-        height: bigShipHeight,
-        child: GestureDetector(
-          onTap: _rotateChildContinuously,
-          child: RotateTrans(
-              Image(
-                image: shipImage,
-                fit: BoxFit.fill,
+    return IgnorePointer(
+      ignoring: false,
+      child: Opacity(
+        opacity: true ? 1 : 0,
+        child: Draggable(
+          data: bigBeforeColor,
+          child: Container(
+            width: shipsWidth,
+            height: bigShipHeight,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                Image(
+                  image: shipImage,
+                  fit: BoxFit.fill,
+                ),
+                buildAnimation(),
               ),
-              buildAnimation2()),
+            ),
+          ),
+          childWhenDragging: Container(
+            color: Colors.brown[200],
+          ),
+          feedback: Container(
+            width: shipsWidth,
+            height: bigShipHeight,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                  Image(
+                    image: shipImage,
+                    fit: BoxFit.fill,
+                  ),
+                  buildAnimation2()),
+            ),
+          ),
         ),
       ),
     );

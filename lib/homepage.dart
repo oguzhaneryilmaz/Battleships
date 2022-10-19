@@ -1,3 +1,5 @@
+import 'package:battleships/gameStarted.dart';
+
 import 'tempfornow.dart';
 import 'package:battleships/map.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GamePage())),
+                                builder: (context) => gameStarted())),
                         child: Container(
                           color: Colors.red,
                           child: Text(
