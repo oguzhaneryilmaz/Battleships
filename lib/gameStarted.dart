@@ -4,24 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class gameStarted extends StatefulWidget {
+class GameStarted extends StatefulWidget {
   @override
-  State<gameStarted> createState() => _gameStartedState();
+  State<GameStarted> createState() => _GameStartedState();
 }
 
-class _gameStartedState extends State<gameStarted> {
+class _GameStartedState extends State<GameStarted> {
+  String selected = "first";
   int numberOfSquares = 100;
   int isEmpty = 0;
   Color isHit = Colors.blue;
-  @override
-  void setState(VoidCallback fn) {
-    tapHit() {
-      isHit = Colors.red;
-    } // TODO: implement setState
-
-    super.setState(fn);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,20 +36,24 @@ class _gameStartedState extends State<gameStarted> {
                     int index,
                   ) {
                     if (dummyList.contains(index)) {
-                      return GestureDetector(
-                        onTap: tapHit,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
+                      return Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selected = "Second";
+                              });
+                            },
                             child: Container(
-                              color: isHit,
-                              child: GestureDetector(
-                                child: Text(
-                                  1.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 25,
-                                  ),
+                              color: selected == "first"
+                                  ? Colors.blue
+                                  : Colors.red,
+                              child: Text(
+                                1.toString(),
+                                style: const TextStyle(
+                                  fontSize: 25,
                                 ),
                               ),
                             ),

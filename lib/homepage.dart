@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => gameStarted())),
+                                builder: (context) => GameStarted())),
                         child: Container(
                           color: Colors.red,
                           child: Text(
