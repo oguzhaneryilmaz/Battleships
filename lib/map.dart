@@ -1,3 +1,4 @@
+import 'homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:battleships/shipsandrotate.dart';
 
@@ -45,8 +46,9 @@ class _MyMapState extends State<MyMap> {
                           margin: EdgeInsets.all(3),
                         ),
                       ),
-                      onMove: (details) {
+                      onMove: (DragTargetDetails) {
                         // dragTarget objeleri yerleştirmeden haritada gezdirirken nereye yerleşeceğini gösteren kısım
+
                         if (matrixList[x][y] == bigShipColor) {
                           matrixList[x][y] = bigShipColor;
                         } else if (matrixList[x][y] == smallShipColor) {
@@ -54,7 +56,86 @@ class _MyMapState extends State<MyMap> {
                         } else if (matrixList[x][y] == smallShip2Color) {
                           matrixList[x][y] = smallShip2Color;
                         } else {
-                          matrixList[x][y] = Colors.green;
+                          if (DragTargetDetails.data == Colors.red[400]) {
+                            if (isBigShipRotate == 1) {
+                              if (y == 8 ||
+                                  y == 9 ||
+                                  y == 1 ||
+                                  y == 0 ||
+                                  matrixList[x][y - 1] == smallShip2Color ||
+                                  matrixList[x][y - 1] == smallShipColor ||
+                                  matrixList[x][y - 2] == smallShip2Color ||
+                                  matrixList[x][y - 2] == smallShipColor ||
+                                  matrixList[x][y + 1] == smallShip2Color ||
+                                  matrixList[x][y + 1] == smallShipColor ||
+                                  matrixList[x][y + 2] == smallShip2Color ||
+                                  matrixList[x][y + 2] == smallShipColor) {
+                              } else {
+                                matrixList[x][y] = Colors.green;
+                              }
+                            } else {
+                              if (x == 8 ||
+                                  x == 9 ||
+                                  x == 1 ||
+                                  x == 0 ||
+                                  matrixList[x - 1][y] == smallShip2Color ||
+                                  matrixList[x - 1][y] == smallShipColor ||
+                                  matrixList[x - 2][y] == smallShip2Color ||
+                                  matrixList[x - 2][y] == smallShipColor ||
+                                  matrixList[x + 1][y] == smallShip2Color ||
+                                  matrixList[x + 1][y] == smallShipColor ||
+                                  matrixList[x + 2][y] == smallShip2Color ||
+                                  matrixList[x + 2][y] == smallShipColor) {
+                              } else {
+                                matrixList[x][y] = Colors.green;
+                              }
+                            }
+                          } else if (DragTargetDetails.data ==
+                              Colors.red[300]) {
+                            if (isSmallShip2Rotate == 1) {
+                              if (y == 9 ||
+                                  y == 0 ||
+                                  matrixList[x][y - 1] == smallShipColor ||
+                                  matrixList[x][y - 1] == bigShipColor ||
+                                  matrixList[x][y + 1] == smallShipColor ||
+                                  matrixList[x][y + 1] == bigShipColor) {
+                              } else {
+                                matrixList[x][y] = Colors.green;
+                              }
+                            } else {
+                              if (x == 9 ||
+                                  x == 0 ||
+                                  matrixList[x - 1][y] == smallShipColor ||
+                                  matrixList[x - 1][y] == bigShipColor ||
+                                  matrixList[x + 1][y] == smallShipColor ||
+                                  matrixList[x + 1][y] == bigShipColor) {
+                              } else {
+                                matrixList[x][y] = Colors.green;
+                              }
+                            }
+                          } else {
+                            if (isSmallShipRotate == 1) {
+                              if (y == 9 ||
+                                  y == 0 ||
+                                  matrixList[x][y - 1] == bigShipColor ||
+                                  matrixList[x][y - 1] == smallShip2Color ||
+                                  matrixList[x][y + 1] == bigShipColor ||
+                                  matrixList[x][y + 1] == smallShip2Color) {
+                              } else {
+                                matrixList[x][y] = Colors.green;
+                              }
+                            } else {
+                              if (x == 9 ||
+                                  x == 0 ||
+                                  matrixList[x - 1][y] == bigShipColor ||
+                                  matrixList[x - 1][y] == smallShip2Color ||
+                                  matrixList[x + 1][y] == bigShipColor ||
+                                  matrixList[x + 1][y] == smallShip2Color) {
+                              } else {
+                                matrixList[x][y] = Colors.green;
+                              }
+                            }
+                          }
                         }
                       },
                       onLeave: (data) {
@@ -65,46 +146,147 @@ class _MyMapState extends State<MyMap> {
                         } else if (matrixList[x][y] == smallShip2Color) {
                           matrixList[x][y] = smallShip2Color;
                         } else {
-                          matrixList[x][y] = mapColor;
+                          if (data == Colors.red[400]) {
+                            if (isBigShipRotate == 1) {
+                              matrixList[x][y] = mapColor;
+                            } else {
+                              matrixList[x][y] = mapColor;
+                            }
+                          } else if (data == Colors.red[300]) {
+                            if (isSmallShip2Rotate == 1) {
+                              matrixList[x][y] = mapColor;
+                            } else {
+                              matrixList[x][y] = mapColor;
+                            }
+                          } else {
+                            // smallship arkasında bıraktığı iz
+                            if (isSmallShipRotate == 1) {
+                              matrixList[x][y] = mapColor;
+                            } else {
+                              matrixList[x][y] = mapColor;
+                            }
+                          }
                         }
                       },
                       onAccept: (data) {
                         // dragtarget objeyi bıraktığımızda gerçekleşecek fonksiyonlar
                         setState(() {
                           if (data == Colors.red[400]) {
+                            bigShipTrue = !bigShipTrue;
                             if (isBigShipRotate == 1) {
-                              for (int i = 2; i > -3; i--) {
-                                matrixList[x][y - i] = bigShipColor;
-                                dummyListReverse.insert(0, (10 * x) + y - i);
+                              if (y == 8 ||
+                                  y == 9 ||
+                                  y == 1 ||
+                                  y == 0 ||
+                                  matrixList[x][y] == smallShip2Color ||
+                                  matrixList[x][y] == smallShipColor ||
+                                  matrixList[x][y - 1] == smallShip2Color ||
+                                  matrixList[x][y - 1] == smallShipColor ||
+                                  matrixList[x][y - 2] == smallShip2Color ||
+                                  matrixList[x][y - 2] == smallShipColor ||
+                                  matrixList[x][y + 1] == smallShip2Color ||
+                                  matrixList[x][y + 1] == smallShipColor ||
+                                  matrixList[x][y + 2] == smallShip2Color ||
+                                  matrixList[x][y + 2] == smallShipColor) {
+                              } else {
+                                for (int i = 2; i > -3; i--) {
+                                  matrixList[x][y - i] = bigShipColor;
+                                  dummyListReverse.insert(0, (10 * x) + y - i);
+                                }
                               }
                             } else {
-                              for (int i = 2; i > -3; i--) {
-                                matrixList[x - i][y] = bigShipColor;
-                                dummyListReverse.insert(0, (10 * (x - i)) + y);
+                              if (x == 8 ||
+                                  x == 9 ||
+                                  x == 1 ||
+                                  x == 0 ||
+                                  matrixList[x][y] == smallShip2Color ||
+                                  matrixList[x][y] == smallShipColor ||
+                                  matrixList[x - 1][y] == smallShip2Color ||
+                                  matrixList[x - 1][y] == smallShipColor ||
+                                  matrixList[x + 1][y] == smallShip2Color ||
+                                  matrixList[x + 1][y] == smallShipColor ||
+                                  matrixList[x - 2][y] == smallShip2Color ||
+                                  matrixList[x - 2][y] == smallShipColor ||
+                                  matrixList[x + 2][y] == smallShip2Color ||
+                                  matrixList[x + 2][y] == smallShipColor) {
+                              } else {
+                                for (int i = 2; i > -3; i--) {
+                                  matrixList[x - i][y] = bigShipColor;
+                                  dummyListReverse.insert(
+                                      0, (10 * (x - i)) + y);
+                                }
                               }
                             }
                           } else if (data == Colors.red[200]) {
+                            smallShipTrue = !smallShipTrue;
+
                             if (isSmallShipRotate == 1) {
-                              for (int i = 1; i > -2; i--) {
-                                matrixList[x][y - i] = smallShipColor;
-                                dummyListReverse.insert(0, (10 * x) + y - i);
+                              if (y == 9 ||
+                                  y == 0 ||
+                                  matrixList[x][y] == smallShip2Color ||
+                                  matrixList[x][y] == bigShipColor ||
+                                  matrixList[x][y - 1] == smallShip2Color ||
+                                  matrixList[x][y - 1] == bigShipColor ||
+                                  matrixList[x][y + 1] == smallShip2Color ||
+                                  matrixList[x][y + 1] == bigShipColor) {
+                              } else {
+                                for (int i = 1; i > -2; i--) {
+                                  matrixList[x][y - i] = smallShipColor;
+                                  dummyListReverse.insert(0, (10 * x) + y - i);
+                                }
                               }
                             } else {
-                              for (int i = 1; i > -2; i--) {
-                                matrixList[x - i][y] = smallShipColor;
-                                dummyListReverse.insert(0, (10 * (x - i)) + y);
+                              if (x == 0 ||
+                                  x == 9 ||
+                                  matrixList[x][y] == smallShip2Color ||
+                                  matrixList[x][y] == bigShipColor ||
+                                  matrixList[x - 1][y] == smallShip2Color ||
+                                  matrixList[x - 1][y] == bigShipColor ||
+                                  matrixList[x + 1][y] == smallShip2Color ||
+                                  matrixList[x + 1][y] == bigShipColor) {
+                              } else {
+                                for (int i = 1; i > -2; i--) {
+                                  matrixList[x - i][y] = smallShipColor;
+                                  dummyListReverse.insert(
+                                      0, (10 * (x - i)) + y);
+                                }
                               }
                             }
                           } else if (data == Colors.red[300]) {
+                            print(smallShip2True);
+                            smallShip2True = !smallShip2True;
+                            print(smallShip2True);
+
                             if (isSmallShip2Rotate == 1) {
-                              for (int i = 1; i > -2; i--) {
-                                matrixList[x][y - i] = smallShip2Color;
-                                dummyListReverse.insert(0, (10 * x) + y - i);
+                              if (y == 0 ||
+                                  y == 9 ||
+                                  matrixList[x][y] == bigShipColor ||
+                                  matrixList[x][y] == smallShipColor ||
+                                  matrixList[x][y + 1] == smallShipColor ||
+                                  matrixList[x][y + 1] == bigShipColor ||
+                                  matrixList[x][y - 1] == smallShipColor ||
+                                  matrixList[x][y - 1] == bigShipColor) {
+                              } else {
+                                for (int i = 1; i > -2; i--) {
+                                  matrixList[x][y - i] = smallShip2Color;
+                                  dummyListReverse.insert(0, (10 * x) + y - i);
+                                }
                               }
                             } else {
-                              for (int i = 1; i > -2; i--) {
-                                matrixList[x - i][y] = smallShip2Color;
-                                dummyListReverse.insert(0, (10 * (x - i)) + y);
+                              if (x == 0 ||
+                                  x == 9 ||
+                                  matrixList[x][y] == bigShipColor ||
+                                  matrixList[x][y] == smallShipColor ||
+                                  matrixList[x + 1][y] == smallShipColor ||
+                                  matrixList[x + 1][y] == bigShipColor ||
+                                  matrixList[x - 1][y] == smallShipColor ||
+                                  matrixList[x - 1][y] == bigShipColor) {
+                              } else {
+                                for (int i = 1; i > -2; i--) {
+                                  matrixList[x - i][y] = smallShip2Color;
+                                  dummyListReverse.insert(
+                                      0, (10 * (x - i)) + y);
+                                }
                               }
                             }
                           }

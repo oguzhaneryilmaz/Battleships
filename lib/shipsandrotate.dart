@@ -1,8 +1,11 @@
 import 'dart:math';
-import 'package:battleships/map.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'map.dart';
+import 'homepage.dart';
 
+bool smallShip2True = true;
+bool smallShipTrue = true;
+bool bigShipTrue = true;
 double shipsWidth = 25;
 double bigShipHeight = 166;
 double smallShipHeight = 100;
@@ -13,8 +16,9 @@ int isSmallShipRotate = 0;
 int isSmallShip2Rotate = 0;
 Color? smallBeforeColor = Colors.red[
     200]; // gemilere farklı renkler verme sebebi => dragTarget-onAccetp fonksiyonunda
-Color? small2BeforeColor =
-    Colors.red[300]; // hangi objenin droplandığını ayırt edebilmek
+Color? small2BeforeColor = Colors.red[300];
+
+// hangi objenin droplandığını ayırt edebilmek
 Color? bigBeforeColor = Colors.red[400];
 
 ImageProvider<Object> shipImage = AssetImage('lib/assets/images/shipImage.png');
@@ -82,9 +86,9 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: false,
+      ignoring: !smallShip2True,
       child: Opacity(
-        opacity: true ? 1 : 0,
+        opacity: smallShip2True ? 1 : 0,
         child: Draggable(
           data: small2BeforeColor,
           child: Container(
@@ -242,9 +246,9 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: false,
+      ignoring: !smallShipTrue,
       child: Opacity(
-        opacity: true ? 1 : 0,
+        opacity: smallShipTrue ? 1 : 0,
         child: Draggable(
           data: smallBeforeColor,
           child: Container(
@@ -410,9 +414,9 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: false,
+      ignoring: !bigShipTrue,
       child: Opacity(
-        opacity: true ? 1 : 0,
+        opacity: bigShipTrue ? 1 : 0,
         child: Draggable(
           data: bigBeforeColor,
           child: Container(
