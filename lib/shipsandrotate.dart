@@ -90,6 +90,11 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
       child: Opacity(
         opacity: smallShip2True ? 1 : 0,
         child: Draggable(
+          onDragCompleted: () {
+            setState(() {
+              smallShip2True = false;
+            });
+          },
           data: small2BeforeColor,
           child: Container(
             width: shipsWidth,
@@ -250,6 +255,11 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
       child: Opacity(
         opacity: smallShipTrue ? 1 : 0,
         child: Draggable(
+          onDragCompleted: () {
+            setState(() {
+              smallShipTrue = false;
+            });
+          },
           data: smallBeforeColor,
           child: Container(
             width: shipsWidth,
@@ -418,6 +428,11 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
       child: Opacity(
         opacity: bigShipTrue ? 1 : 0,
         child: Draggable(
+          onDragCompleted: () {
+            setState(() {
+              bigShipTrue = false;
+            });
+          },
           data: bigBeforeColor,
           child: Container(
             width: shipsWidth,

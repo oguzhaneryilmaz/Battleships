@@ -172,7 +172,6 @@ class _MyMapState extends State<MyMap> {
                         // dragtarget objeyi bıraktığımızda gerçekleşecek fonksiyonlar
                         setState(() {
                           if (data == Colors.red[400]) {
-                            bigShipTrue = !bigShipTrue;
                             if (isBigShipRotate == 1) {
                               if (y == 8 ||
                                   y == 9 ||
@@ -218,8 +217,6 @@ class _MyMapState extends State<MyMap> {
                               }
                             }
                           } else if (data == Colors.red[200]) {
-                            smallShipTrue = !smallShipTrue;
-
                             if (isSmallShipRotate == 1) {
                               if (y == 9 ||
                                   y == 0 ||
@@ -253,10 +250,6 @@ class _MyMapState extends State<MyMap> {
                               }
                             }
                           } else if (data == Colors.red[300]) {
-                            print(smallShip2True);
-                            smallShip2True = !smallShip2True;
-                            print(smallShip2True);
-
                             if (isSmallShip2Rotate == 1) {
                               if (y == 0 ||
                                   y == 9 ||
