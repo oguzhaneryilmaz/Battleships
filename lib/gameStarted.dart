@@ -39,16 +39,16 @@ class _GameStartedState extends State<GameStarted> {
                     BuildContext context,
                     int index,
                   ) {
-                    for (int i = 0; i < 11; i++) {
-                      if (dummyList[i] == index) {
+                    for (int i = 0; i < 5; i++) {
+                      if (dummyListBig[i] == index) {
                         return MyPixel(
                           onTap: () {
                             setState(() {
-                              trueSelected[i] = "second";
+                              trueSelectedBig[i] = "second";
                             });
                             ;
                           },
-                          color: trueSelected[i] == "first"
+                          color: trueSelectedBig[i] == "first"
                               ? mapColor
                               : hitShipColor,
                           child: Text(
@@ -60,19 +60,82 @@ class _GameStartedState extends State<GameStarted> {
                         );
                       }
                     }
-                    for (int i = 0; i < 100; i++) {
-                      if (dummyList[i] != index) {
+                    for (int i = 0; i < 3; i++) {
+                      if (dummyListSmall[i] == index) {
                         return MyPixel(
-                          color: wrongSelected[index] == "first"
+                          onTap: () {
+                            setState(() {
+                              trueSelectedSmall[i] = "second";
+                            });
+                            ;
+                          },
+                          color: trueSelectedSmall[i] == "first"
                               ? mapColor
-                              : hitSeaColor,
+                              : hitShipColor,
+                          child: Text(
+                            "1",
+                            style: TextStyle(
+                              fontSize: 25,
+                            ),
+                          ),
+                        );
+                      }
+                    }
+                    for (int i = 0; i < 3; i++) {
+                      if (dummyListSmall2[i] == index) {
+                        return MyPixel(
+                          onTap: () {
+                            setState(() {
+                              trueSelectedSmall2[i] = "second";
+                            });
+                            ;
+                          },
+                          color: trueSelectedSmall2[i] == "first"
+                              ? mapColor
+                              : hitShipColor,
+                          child: Text(
+                            "1",
+                            style: TextStyle(
+                              fontSize: 25,
+                            ),
+                          ),
+                        );
+                      }
+                    }
+
+                    ///
+                    ///
+                    ///
+                    ///
+                    ///
+                    ///
+                    ///
+                    ///
+                    ///
+
+                    for (int i = 0; i < 100; i++) {
+                      if (dummyListSmall[i] != index ||
+                          dummyListBig[i] != index ||
+                          dummyListSmall2[i] != index) {
+                        return MyPixel(
+                          color: wrongSelectedBig[index] == "second" ||
+                                  wrongSelectedSmall[index] == "second" ||
+                                  wrongSelectedSmall2[index] == "second"
+                              ? hitSeaColor
+                              : mapColor,
                           child: Text(
                             "0",
                             style: TextStyle(fontSize: 25),
                           ),
                           onTap: () {
                             setState(() {
-                              wrongSelected[index] = "second";
+                              if (wrongSelectedBig[index] == "first") {
+                                wrongSelectedBig[index] = "second";
+                              } else if (wrongSelectedSmall[index] == "first") {
+                                wrongSelectedSmall[index] = "second";
+                              } else {
+                                wrongSelectedSmall2[index] = "second";
+                              }
                             });
                           },
                         );

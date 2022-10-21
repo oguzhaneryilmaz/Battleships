@@ -1,8 +1,11 @@
 import 'dart:math';
+import 'package:battleships/map.dart';
 import 'package:flutter/material.dart';
-import 'map.dart';
-import 'homepage.dart';
 
+bool isStartButtonVisible = false;
+bool isBigVisible = false;
+bool isSmallVisible = false;
+bool isSmall2Visible = false;
 bool smallShip2True = true;
 bool smallShipTrue = true;
 bool bigShipTrue = true;
@@ -91,9 +94,13 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
         opacity: smallShip2True ? 1 : 0,
         child: Draggable(
           onDragCompleted: () {
-            setState(() {
-              smallShip2True = false;
-            });
+            if (dummyListSmall2[0] + dummyListSmall2[1] + dummyListSmall2[2] >
+                0) {
+              setState(() {
+                smallShip2True = false;
+                isSmall2Visible = true;
+              });
+            }
           },
           data: small2BeforeColor,
           child: Container(
@@ -256,9 +263,11 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
         opacity: smallShipTrue ? 1 : 0,
         child: Draggable(
           onDragCompleted: () {
-            setState(() {
-              smallShipTrue = false;
-            });
+            if (dummyListSmall[0] + dummyListSmall[1] + dummyListSmall[2] > 0) {
+              setState(() {
+                smallShipTrue = false;
+              });
+            }
           },
           data: smallBeforeColor,
           child: Container(
@@ -429,9 +438,12 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
         opacity: bigShipTrue ? 1 : 0,
         child: Draggable(
           onDragCompleted: () {
-            setState(() {
-              bigShipTrue = false;
-            });
+            if (dummyListBig[0] + dummyListBig[1] + dummyListBig[2] > 0) {
+              setState(() {
+                bigShipTrue = false;
+                isBigVisible = true;
+              });
+            }
           },
           data: bigBeforeColor,
           child: Container(

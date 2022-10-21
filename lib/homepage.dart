@@ -64,9 +64,11 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => GameStarted())),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GameStarted(),
+                          ),
+                        ),
                         child: Container(
                           color: Colors.red,
                           child: Text(
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

@@ -14,6 +14,12 @@ List matrixList = List.generate(10, (i) => List.filled(10, mapColor),
 //
 List<int> dummyList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> dummyListReverse = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+List<int> dummyListSmall = [0, 0, 0];
+List<int> dummyListSmallReverse = [0, 0, 0];
+List<int> dummyListSmall2 = [0, 0, 0];
+List<int> dummyListSmall2Reverse = [0, 0, 0];
+List<int> dummyListBig = [0, 0, 0, 0, 0];
+List<int> dummyListBigReverse = [0, 0, 0, 0, 0];
 
 List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // for döngüsü için
 
@@ -190,7 +196,8 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 for (int i = 2; i > -3; i--) {
                                   matrixList[x][y - i] = bigShipColor;
-                                  dummyListReverse.insert(0, (10 * x) + y - i);
+                                  dummyListBigReverse.insert(
+                                      0, (10 * x) + y - i);
                                 }
                               }
                             } else {
@@ -211,7 +218,7 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 for (int i = 2; i > -3; i--) {
                                   matrixList[x - i][y] = bigShipColor;
-                                  dummyListReverse.insert(
+                                  dummyListBigReverse.insert(
                                       0, (10 * (x - i)) + y);
                                 }
                               }
@@ -229,7 +236,8 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 for (int i = 1; i > -2; i--) {
                                   matrixList[x][y - i] = smallShipColor;
-                                  dummyListReverse.insert(0, (10 * x) + y - i);
+                                  dummyListSmallReverse.insert(
+                                      0, (10 * x) + y - i);
                                 }
                               }
                             } else {
@@ -244,7 +252,7 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 for (int i = 1; i > -2; i--) {
                                   matrixList[x - i][y] = smallShipColor;
-                                  dummyListReverse.insert(
+                                  dummyListSmallReverse.insert(
                                       0, (10 * (x - i)) + y);
                                 }
                               }
@@ -262,7 +270,8 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 for (int i = 1; i > -2; i--) {
                                   matrixList[x][y - i] = smallShip2Color;
-                                  dummyListReverse.insert(0, (10 * x) + y - i);
+                                  dummyListSmall2Reverse.insert(
+                                      0, (10 * x) + y - i);
                                 }
                               }
                             } else {
@@ -277,18 +286,33 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 for (int i = 1; i > -2; i--) {
                                   matrixList[x - i][y] = smallShip2Color;
-                                  dummyListReverse.insert(
+                                  dummyListSmall2Reverse.insert(
                                       0, (10 * (x - i)) + y);
                                 }
                               }
                             }
                           }
 
-                          for (int i in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
-                            dummyList[i] = (dummyListReverse[i] ~/ 10 +
-                                (dummyListReverse[i] % 10) * 10);
+                          for (int i in [0, 1, 2, 3, 4]) {
+                            dummyListBig[i] = (dummyListBigReverse[i] ~/ 10 +
+                                (dummyListBigReverse[i] % 10) * 10);
                           }
-                          print(dummyList);
+                          for (int i in [0, 1, 2]) {
+                            dummyListSmall[i] =
+                                (dummyListSmallReverse[i] ~/ 10 +
+                                    (dummyListSmallReverse[i] % 10) * 10);
+                          }
+                          for (int i in [0, 1, 2]) {
+                            dummyListSmall2[i] =
+                                (dummyListSmall2Reverse[i] ~/ 10 +
+                                    (dummyListSmall2Reverse[i] % 10) * 10);
+                          }
+                          print("Big Ship Coordination : " +
+                              dummyListBig.toString());
+                          print("Small Ship Coordination : " +
+                              dummyListSmall.toString());
+                          print("Small Ship 2 Coordination : " +
+                              dummyListSmall2.toString());
                         });
                       },
                     ),
