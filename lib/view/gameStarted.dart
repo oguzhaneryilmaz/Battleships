@@ -1,6 +1,6 @@
-import 'package:battleships/map.dart';
-import 'defineLists.dart';
-import 'package:battleships/pixel.dart';
+import 'package:battleships/view/map.dart';
+import '../viewmodel/defineLists.dart';
+import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/src/widgets/container.dart';

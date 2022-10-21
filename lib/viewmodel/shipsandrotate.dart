@@ -1,5 +1,6 @@
 import 'dart:math';
-import 'package:battleships/map.dart';
+import 'package:battleships/viewmodel/defineLists.dart';
+import 'package:battleships/view/map.dart';
 import 'package:flutter/material.dart';
 
 bool isStartButtonVisible = false;

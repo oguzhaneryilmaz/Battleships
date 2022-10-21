@@ -1,6 +1,6 @@
 import 'homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:battleships/shipsandrotate.dart';
+import 'package:battleships/viewmodel/shipsandrotate.dart';
 
 Color bigShipColor = Colors
     .brown; // gemiler yerleştirildikten sonra haritada değiştirecekleri renkler

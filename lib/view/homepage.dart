@@ -1,8 +1,8 @@
-import 'package:battleships/gameStarted.dart';
+import 'package:battleships/view/gameStarted.dart';
 
-import 'package:battleships/map.dart';
+import 'package:battleships/view/map.dart';
 import 'package:flutter/material.dart';
-import 'package:battleships/shipsandrotate.dart';
+import 'package:battleships/viewmodel/shipsandrotate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
