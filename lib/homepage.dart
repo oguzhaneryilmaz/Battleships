@@ -12,6 +12,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  denemeFunc() {
+    if (isBigVisible == true &&
+        isSmall2Visible == true &&
+        isSmallVisible == true) {
+      isStartButtonVisible = true;
+    }
+  }
+
   int numberOfSquares = 100;
 
   int isHit = 0;
@@ -63,23 +71,37 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => GameStarted(),
-                          ),
-                        ),
-                        child: Container(
-                          color: Colors.red,
-                          child: Text(
-                            "START",
-                            style: TextStyle(
-                              fontSize: 24,
-                              color: Color.fromARGB(255, 71, 21, 4),
+                          child: Container(
+                            color: Colors.red,
+                            child: Text(
+                              "START",
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Color.fromARGB(255, 71, 21, 4),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
+                          onTap: () {
+                            if (isBigVisible == true &&
+                                isSmall2Visible == true &&
+                                isSmallVisible == true)
+                              setState(() {
+                                {
+                                  isStartButtonVisible = true;
+                                  print("startbuttonvisible");
+                                }
+                              });
+                            if (isStartButtonVisible == true) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GameStarted(),
+                                ),
+                              );
+                            } else {
+                              print("Tüm gemileri yerleştirmediniz");
+                            }
+                          }),
                     )
                   ],
                 ),

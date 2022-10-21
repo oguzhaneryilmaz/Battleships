@@ -266,6 +266,7 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
             if (dummyListSmall[0] + dummyListSmall[1] + dummyListSmall[2] > 0) {
               setState(() {
                 smallShipTrue = false;
+                isSmallVisible = true;
               });
             }
           },
