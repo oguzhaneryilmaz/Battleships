@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                               setState(() {
                                 {
                                   isStartButtonVisible = true;
-                                  print("startbuttonvisible");
+                                  print("Oyun başladı !!");
                                 }
                               });
                             if (isStartButtonVisible == true) {

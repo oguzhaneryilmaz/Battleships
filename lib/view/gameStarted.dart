@@ -1,4 +1,5 @@
 import 'package:battleships/view/map.dart';
+import 'package:battleships/viewmodel/shipsboomed.dart';
 import '../viewmodel/defineLists.dart';
 import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,11 @@ class _GameStartedState extends State<GameStarted> {
                           onTap: () {
                             setState(() {
                               trueSelectedBig[i] = "second";
+                              bigShipBoomed += 1;
+                              if (bigShipBoomed == 5) {
+                                bigShipBoomedFunc();
+                              }
+                              allShipsBoomed();
                             });
                             ;
                           },
@@ -66,6 +72,11 @@ class _GameStartedState extends State<GameStarted> {
                           onTap: () {
                             setState(() {
                               trueSelectedSmall[i] = "second";
+                              smallShipBoomed += 1;
+                              if (smallShipBoomed == 3) {
+                                smallShipBoomedFunc();
+                              }
+                              allShipsBoomed();
                             });
                             ;
                           },
@@ -87,6 +98,11 @@ class _GameStartedState extends State<GameStarted> {
                           onTap: () {
                             setState(() {
                               trueSelectedSmall2[i] = "second";
+                              smallShip2Boomed += 1;
+                              if (smallShip2Boomed == 3) {
+                                smallShip2BoomedFunc();
+                              }
+                              allShipsBoomed();
                             });
                             ;
                           },
