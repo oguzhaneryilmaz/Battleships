@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "593676533450",
+    "firebase_url": "https://battleshipsfirebase-default-rtdb.firebaseio.com",
     "project_id": "battleshipsfirebase",
     "storage_bucket": "battleshipsfirebase.appspot.com"
   },

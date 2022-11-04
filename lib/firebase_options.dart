@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '593676533450',
     projectId: 'battleshipsfirebase',
     authDomain: 'battleshipsfirebase.firebaseapp.com',
+    databaseURL: 'https://battleshipsfirebase-default-rtdb.firebaseio.com',
     storageBucket: 'battleshipsfirebase.appspot.com',
     measurementId: 'G-BEDXGW2020',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:593676533450:android:dd63951d0325bb4fabfe33',
     messagingSenderId: '593676533450',
     projectId: 'battleshipsfirebase',
+    databaseURL: 'https://battleshipsfirebase-default-rtdb.firebaseio.com',
     storageBucket: 'battleshipsfirebase.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:593676533450:ios:f6c4b91cca970d33abfe33',
     messagingSenderId: '593676533450',
     projectId: 'battleshipsfirebase',
+    databaseURL: 'https://battleshipsfirebase-default-rtdb.firebaseio.com',
     storageBucket: 'battleshipsfirebase.appspot.com',
     iosClientId: '593676533450-vce6m0tm4303vps3guu5eihn965u8dg6.apps.googleusercontent.com',
     iosBundleId: 'com.example.battleships',
@@ -76,6 +79,7 @@ class DefaultFirebaseOptions {
     appId: '1:593676533450:ios:f6c4b91cca970d33abfe33',
     messagingSenderId: '593676533450',
     projectId: 'battleshipsfirebase',
+    databaseURL: 'https://battleshipsfirebase-default-rtdb.firebaseio.com',
     storageBucket: 'battleshipsfirebase.appspot.com',
     iosClientId: '593676533450-vce6m0tm4303vps3guu5eihn965u8dg6.apps.googleusercontent.com',
     iosBundleId: 'com.example.battleships',
