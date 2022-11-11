@@ -1,11 +1,9 @@
+import 'package:battleships/firebase_database_functions.dart';
 import 'package:battleships/view/gameStarted.dart';
 
 import 'package:battleships/view/map.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:battleships/viewmodel/shipsandrotate.dart';
-
-String testString = "Oyuncu 1";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -99,15 +97,11 @@ class _HomePageState extends State<HomePage> {
                                   // İÇİNE ATIYOR VE REALTİME DATABASE DE GÖSTERİYOR
 
                                   //
-
-                                  DatabaseReference _test = FirebaseDatabase
-                                      .instance
-                                      .ref()
-                                      .child("test");
-
-                                  _test.set(testString);
+                                  createTest();
+                                  shipPlacement();
 
                                   //
+
                                 }
                               });
                             if (isStartButtonVisible == true) {

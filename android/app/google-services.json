@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:593676533450:android:dd63951d0325bb4fabfe33",
+        "mobilesdk_app_id": "1:593676533450:android:5db278c3bd39b261abfe33",
         "android_client_info": {
           "package_name": "com.example.battleships"
         }

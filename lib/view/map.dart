@@ -1,6 +1,6 @@
-import 'homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:battleships/viewmodel/shipsandrotate.dart';
+import 'package:battleships/viewmodel/defineLists.dart';
 
 Color bigShipColor = Colors
     .brown; // gemiler yerleştirildikten sonra haritada değiştirecekleri renkler
@@ -12,16 +12,6 @@ List matrixList = List.generate(10, (i) => List.filled(10, mapColor),
     growable:
         false); // for döngüsüyle oluşturmak yerine List.generate daha mantıklı
 //
-List<int> dummyList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-List<int> dummyListReverse = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-List<int> dummyListSmall = [0, 0, 0];
-List<int> dummyListSmallReverse = [0, 0, 0];
-List<int> dummyListSmall2 = [0, 0, 0];
-List<int> dummyListSmall2Reverse = [0, 0, 0];
-List<int> dummyListBig = [0, 0, 0, 0, 0];
-List<int> dummyListBigReverse = [0, 0, 0, 0, 0];
-
-List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // for döngüsü için
 
 class MyMap extends StatefulWidget {
   const MyMap({super.key});
@@ -47,7 +37,7 @@ class _MyMapState extends State<MyMap> {
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
                           width: 25,
-                          height: 34,
+                          height: 25,
                           color: matrixList[x][y],
                           margin: EdgeInsets.all(3),
                         ),

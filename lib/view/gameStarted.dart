@@ -1,14 +1,9 @@
+import 'package:battleships/firebase_database_functions.dart';
 import 'package:battleships/view/map.dart';
 import 'package:battleships/viewmodel/shipsboomed.dart';
-import 'package:firebase_database/firebase_database.dart';
 import '../viewmodel/defineLists.dart';
 import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
-int testInteger = 11;
 
 class GameStarted extends StatefulWidget {
   @override
@@ -54,14 +49,8 @@ class _GameStartedState extends State<GameStarted> {
                                 bigShipBoomedFunc();
                               }
                               allShipsBoomed();
-                              DatabaseReference _test2 = FirebaseDatabase
-                                  .instance
-                                  .ref()
-                                  .child("test/Kalan vuruş");
-                              testInteger--;
-                              _test2.set(testInteger);
+                              remainingHits();
                             });
-                            ;
                           },
                           color: trueSelectedBig[i] == "first"
                               ? mapColor
@@ -86,12 +75,7 @@ class _GameStartedState extends State<GameStarted> {
                                 smallShipBoomedFunc();
                               }
                               allShipsBoomed();
-                              DatabaseReference _test2 = FirebaseDatabase
-                                  .instance
-                                  .ref()
-                                  .child("test/Kalan vuruş");
-                              testInteger--;
-                              _test2.set(testInteger);
+                              remainingHits();
                             });
                             ;
                           },
@@ -118,12 +102,7 @@ class _GameStartedState extends State<GameStarted> {
                                 smallShip2BoomedFunc();
                               }
                               allShipsBoomed();
-                              DatabaseReference _test2 = FirebaseDatabase
-                                  .instance
-                                  .ref()
-                                  .child("test/Kalan vuruş");
-                              testInteger--;
-                              _test2.set(testInteger);
+                              remainingHits();
                             });
                             ;
                           },
