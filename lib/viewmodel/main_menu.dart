@@ -1,3 +1,4 @@
+import 'package:battleships/view/homepage.dart';
 import 'package:battleships/wait_page.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class mainMenu extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => waitPage()),
+                MaterialPageRoute(builder: (context) => HomePage()),
               );
             },
             child: Icon(

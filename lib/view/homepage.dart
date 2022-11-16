@@ -2,6 +2,7 @@ import 'package:battleships/firebase_database_functions.dart';
 import 'package:battleships/view/gameStarted.dart';
 
 import 'package:battleships/view/map.dart';
+import 'package:battleships/wait_page.dart';
 import 'package:flutter/material.dart';
 import 'package:battleships/viewmodel/shipsandrotate.dart';
 
@@ -98,7 +99,8 @@ class _HomePageState extends State<HomePage> {
 
                                   //
                                   createTest();
-                                  shipPlacement();
+
+                                  //shipPlacement();
 
                                   //
 
@@ -108,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => GameStarted(),
+                                  builder: (context) => waitPage(),
                                 ),
                               );
                             } else {

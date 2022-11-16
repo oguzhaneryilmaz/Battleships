@@ -23,6 +23,7 @@ List<String> trueSelectedSmall2 = [
 List wrongSelectedBig = List<String>.generate(100, (i) => "First");
 List wrongSelectedSmall = List<String>.generate(100, (i) => "First");
 List wrongSelectedSmall2 = List<String>.generate(100, (i) => "First");
+List<String> databasePlayerList = [];
 
 List<int> dummyList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> dummyListReverse = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
