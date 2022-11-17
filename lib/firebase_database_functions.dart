@@ -1,3 +1,5 @@
+import 'package:battleships/enough_player.dart';
+import 'package:battleships/global_enough_player.dart';
 import 'package:battleships/viewmodel/defineLists.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -5,7 +7,7 @@ import 'package:uuid/uuid.dart';
 
 var randomNum = const Uuid();
 var uniqueRoom = randomNum.v1();
-late Map snapshotAsMap;
+late Map dataAsMap;
 late Map shipLocationAsMap;
 String player = randomNum.v4();
 
@@ -13,8 +15,8 @@ String testString = "Nickname";
 int testInteger = trueSelectedBig.length +
     trueSelectedSmall.length +
     trueSelectedSmall2.length;
-
-createTest() async {
+createTest() {
+  databasePlayerList.insert(0, player);
   DatabaseReference p1 =
       FirebaseDatabase.instance.ref().child('Waiting-room/$player');
   p1.set(testString);
@@ -30,30 +32,27 @@ createTest() async {
       .ref()
       .child("Waiting-room/${databasePlayerList[0]}/SmallShip2Location");
   smallShip2Location.set(dummyListSmall2);
-  final ref = FirebaseDatabase.instance.ref();
-  final snapshot = await ref.child('Waiting-room').get();
-  if (snapshot.exists) {
-    snapshotAsMap = snapshot.value as Map;
-    print('snapshotasmap : $snapshotAsMap');
-    snapshotAsMap.keys.forEach((key) {
-      databasePlayerList.insert(0, key);
-    });
-    snapshotAsMap.values.forEach((value) {
-      shipLocationAsMap = value as Map;
-    });
-  }
-  snapshotAsMap = snapshot.value as Map;
-  print('snapshotasmap : $snapshotAsMap');
-  snapshotAsMap.keys.forEach((key) {
-    databasePlayerList.insert(0, key);
-  });
-  snapshotAsMap.values.forEach((value) {
-    shipLocationAsMap = value as Map;
-  });
+  DatabaseReference ref = FirebaseDatabase.instance.ref('Waiting-room');
+  ref.onValue.listen((DatabaseEvent event) {
+    final data = event.snapshot.value;
+    print('FİRST FETCH DATA : $data');
 
-  print('ship location map values : ${shipLocationAsMap.values}');
-  print('database player list : $databasePlayerList');
-  print(databasePlayerList.length);
+    dataAsMap = data as Map;
+
+    print('DATA THAT TRANSFORMED TO MAP : ${dataAsMap.keys}');
+    dataAsMap.keys.forEach((key) {
+      if (key != player) {
+        databasePlayerList.insert(0, key);
+      }
+    });
+
+    if (databasePlayerList.length >= 2) {
+      globalEnoughPlayer.playerEnoughChange(true);
+    } else {
+      globalEnoughPlayer.playerEnoughChange(false);
+    }
+    print('DATABASE PLAYER LİST : $databasePlayerList');
+  });
 }
 
 remainingHits() {
@@ -137,6 +136,9 @@ playerMatch() {
         .ref()
         .child('Waiting-room/${databasePlayerList[1]}')
         .remove();
+    print('DATABASE PLAYER LİST : $databasePlayerList');
+    databasePlayerList.clear();
+    print('DATABASE PLAYER LİST : $databasePlayerList');
   } else {
     print("rakip bekleniyor");
   }
