@@ -25,7 +25,7 @@ class _waitPageState extends State<waitPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "W8ing for an opponent",
+                "Waiting for an opponent",
                 style: TextStyle(fontSize: 20, color: Colors.red),
               ),
               SizedBox(
@@ -45,6 +45,11 @@ class _waitPageState extends State<waitPage> {
                 TextButton(
                   onPressed: () {
                     playerMatch();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GameStarted(),
+                        ));
                   },
                   child: Text("Game Found"),
                 ),

@@ -35,13 +35,10 @@ createTest() {
   DatabaseReference ref = FirebaseDatabase.instance.ref('Waiting-room');
   ref.onValue.listen((DatabaseEvent event) {
     final data = event.snapshot.value;
-    print('FİRST FETCH DATA : $data');
 
     dataAsMap = data as Map;
-
-    print('DATA THAT TRANSFORMED TO MAP : ${dataAsMap.keys}');
     dataAsMap.keys.forEach((key) {
-      if (key != player) {
+      if (key != databasePlayerList[0]) {
         databasePlayerList.insert(0, key);
       }
     });
@@ -51,7 +48,6 @@ createTest() {
     } else {
       globalEnoughPlayer.playerEnoughChange(false);
     }
-    print('DATABASE PLAYER LİST : $databasePlayerList');
   });
 }
 
@@ -107,7 +103,7 @@ playerMatch() {
   //     databasePlayerList.insert(0, data);
   //     DatabaseReference listAddPlayer =
   //         FirebaseDatabase.instance.ref().child("Waiting-room");
-  //     listAddPlayer.set(databasePlayerList);
+  //     listAddPlayer.set(databasePlayerList);Game-Room-${uniqueGame}
   //     FirebaseDatabase.instance.ref('Testing-room').remove();
   //   });
   // }
@@ -115,19 +111,28 @@ playerMatch() {
   if (databasePlayerList.length >= 2) {
     var uniqueGame = uniqueRoom;
     DatabaseReference p1 =
-        FirebaseDatabase.instance.ref().child('$uniqueGame/p1');
+        FirebaseDatabase.instance.ref().child('Game-Room-${uniqueGame}/p1');
     p1.set(databasePlayerList[0]);
-
-    DatabaseReference matchedP1BigShipLoc =
-        FirebaseDatabase.instance.ref().child('$uniqueGame/p1/BigShipLocation');
-    matchedP1BigShipLoc.set(FirebaseDatabase.instance
+    FirebaseDatabase.instance
         .ref()
-        .child("Waiting-room/${databasePlayerList[0]}/BigShipLocation")
-        .get());
-    DatabaseReference p2 =
-        FirebaseDatabase.instance.ref().child('$uniqueGame/p2');
-    p2.set(databasePlayerList[1]);
+        .child('Game-Room-${uniqueGame}/p1/Player ID')
+        .set(databasePlayerList[0]);
 
+    DatabaseReference matchedP1ShipLocs = FirebaseDatabase.instance
+        .ref()
+        .child('Game-Room-${uniqueGame}/p1/ShipLocations');
+    matchedP1ShipLocs.set(dataAsMap[databasePlayerList[0]]);
+    DatabaseReference p2 =
+        FirebaseDatabase.instance.ref().child('Game-Room-${uniqueGame}/p2');
+    p2.set(databasePlayerList[1]);
+    FirebaseDatabase.instance
+        .ref()
+        .child('Game-Room-${uniqueGame}/p2/Player ID')
+        .set(databasePlayerList[1]);
+    DatabaseReference matchedP2ShipLocs = FirebaseDatabase.instance
+        .ref()
+        .child('Game-Room-${uniqueGame}/p2/ShipLocations');
+    matchedP2ShipLocs.set(dataAsMap[databasePlayerList[1]]);
     FirebaseDatabase.instance
         .ref()
         .child('Waiting-room/${databasePlayerList[0]}')
