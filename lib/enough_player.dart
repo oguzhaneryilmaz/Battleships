@@ -8,8 +8,11 @@ abstract class _EnoughPlayerBase with Store {
   @observable
   bool playerEnough = false;
 
-  @action
   void playerEnoughChange(bool newPlayerEnough) {
     playerEnough = newPlayerEnough;
+  }
+
+  initBase() {
+    playerEnough = false;
   }
 }

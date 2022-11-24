@@ -16,6 +16,7 @@ int testInteger = trueSelectedBig.length +
     trueSelectedSmall.length +
     trueSelectedSmall2.length;
 createTest() {
+  globalEnoughPlayer.initBase();
   databasePlayerList.insert(0, player);
   DatabaseReference p1 =
       FirebaseDatabase.instance.ref().child('Waiting-room/$player');
@@ -37,29 +38,38 @@ createTest() {
     final data = event.snapshot.value;
 
     dataAsMap = data as Map;
-    dataAsMap.keys.forEach((key) {
-      if (key != databasePlayerList[0]) {
+    for (var key in dataAsMap.keys) {
+      if (!databasePlayerList.contains(key)) {
         databasePlayerList.insert(0, key);
       }
-    });
+    }
 
-    if (databasePlayerList.length >= 2) {
+    if (databasePlayerList.length == 2) {
       globalEnoughPlayer.playerEnoughChange(true);
-    } else {
-      globalEnoughPlayer.playerEnoughChange(false);
+      shipLocationAsMap = dataAsMap[databasePlayerList[0]];
+      if (player != databasePlayerList[0]) {
+        enemyBigShipLocation = List.from(shipLocationAsMap['BigShipLocation']);
+        enemySmallShipLocation =
+            List.from(shipLocationAsMap['SmallShipLocation']);
+        enemySmallShip2Location =
+            List.from(shipLocationAsMap['SmallShip2Location']);
+        // print(
+        //     'DÜŞMAN BİG SHİP : $enemyBigShipLocation \n DÜŞMAN SMALL SHİP : $enemySmallShipLocation \nDÜŞMAN SMALL SHİP 2 : $enemySmallShip2Location');
+      }
+      ;
     }
   });
 }
 
 remainingHits() {
-  DatabaseReference _test2 = FirebaseDatabase.instance
-      .ref()
-      .child("room$uniqueRoom/p$player/Kalan vuruş");
-  testInteger--;
-  _test2.set(testInteger);
-  if (testInteger == 0) {
-    finishGame();
-  }
+  // DatabaseReference _test2 = FirebaseDatabase.instance
+  //     .ref()
+  //     .child("room$uniqueRoom/p$player/Kalan vuruş");
+  // testInteger--;
+  // _test2.set(testInteger);
+  // if (testInteger == 0) {
+  //   finishGame();
+  // }
 }
 
 // shipPlacement() {

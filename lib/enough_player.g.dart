@@ -25,20 +25,6 @@ mixin _$EnoughPlayer on _EnoughPlayerBase, Store {
     });
   }
 
-  late final _$_EnoughPlayerBaseActionController =
-      ActionController(name: '_EnoughPlayerBase', context: context);
-
-  @override
-  void playerEnoughChange(bool newPlayerEnough) {
-    final _$actionInfo = _$_EnoughPlayerBaseActionController.startAction(
-        name: '_EnoughPlayerBase.playerEnoughChange');
-    try {
-      return super.playerEnoughChange(newPlayerEnough);
-    } finally {
-      _$_EnoughPlayerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

@@ -29,10 +29,14 @@ List<int> dummyList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> dummyListReverse = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> dummyListSmall = [0, 0, 0];
 List<int> dummyListSmallReverse = [0, 0, 0];
+List<int> enemySmallShipLocation = [0, 0, 0];
 List<int> dummyListSmall2 = [0, 0, 0];
 List<int> dummyListSmall2Reverse = [0, 0, 0];
+List<int> enemySmallShip2Location = [0, 0, 0];
+
 List<int> dummyListBig = [0, 0, 0, 0, 0];
 List<int> dummyListBigReverse = [0, 0, 0, 0, 0];
+List<int> enemyBigShipLocation = [0, 0, 0, 0, 0];
 List<int> oneToTenList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // for döngüsü için
 
 

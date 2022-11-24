@@ -19,7 +19,7 @@ class _waitPageState extends State<waitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Observer(builder: (context) {
+      body: Observer(builder: (_) {
         return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
