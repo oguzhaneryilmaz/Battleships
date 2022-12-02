@@ -82,14 +82,39 @@ createTest() {
 }
 
 remainingHits() {
-  // DatabaseReference _test2 = FirebaseDatabase.instance
-  //     .ref()
-  //     .child("room$uniqueRoom/p$player/Kalan vuruş");
-  // testInteger--;
-  // _test2.set(testInteger);
-  // if (testInteger == 0) {
-  //   finishGame();
-  // }
+  late int databaseRemainHitsA;
+  late int databaseRemainHitsB;
+  DatabaseReference _test2 =
+      FirebaseDatabase.instance.ref().child("Game-Room-1/rH-$player");
+  testInteger--;
+  _test2.set(testInteger);
+  DatabaseReference ref2 =
+      FirebaseDatabase.instance.ref("Game-Room-1/rH-${databasePlayerList[0]}");
+  ref2.onValue.listen((eventA) {
+    databaseRemainHitsA = eventA.snapshot.value as int;
+  });
+  DatabaseReference ref3 =
+      FirebaseDatabase.instance.ref("Game-Room-1/rH-${databasePlayerList[1]}");
+  ref3.onValue.listen((eventB) {
+    databaseRemainHitsB = eventB.snapshot.value as int;
+  });
+  DatabaseReference ref4 = FirebaseDatabase.instance.ref("Game-Room-1");
+  ref4.onValue.listen((eventC) {
+    if (databaseRemainHitsA == 0) {
+      if (player == databasePlayerList[0]) {
+        print("OYUNU KAZANDINIZ");
+      } else {
+        print("OYUNU KAYBETTİNİZ");
+      }
+    }
+    if (databaseRemainHitsB == 0) {
+      if (player == databasePlayerList[1]) {
+        print("OYUNU KAZANDINIZ");
+      } else {
+        print("OYUNU KAYBETTİNİZ");
+      }
+    }
+  });
 }
 
 // shipPlacement() {

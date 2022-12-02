@@ -49,13 +49,15 @@ class _GameStartedState extends State<GameStarted> {
                               return MyPixel(
                                 onTap: () {
                                   setState(() {
+                                    if (trueSelectedBig[i] == "first") {
+                                      remainingHits();
+                                    }
                                     trueSelectedBig[i] = "second";
                                     bigShipBoomed += 1;
                                     if (bigShipBoomed == 5) {
                                       bigShipBoomedFunc();
                                     }
                                     allShipsBoomed();
-                                    remainingHits();
                                   });
                                 },
                                 color: trueSelectedBig[i] == "first"
@@ -75,13 +77,15 @@ class _GameStartedState extends State<GameStarted> {
                               return MyPixel(
                                 onTap: () {
                                   setState(() {
+                                    if (trueSelectedSmall[i] == "first") {
+                                      remainingHits();
+                                    }
                                     trueSelectedSmall[i] = "second";
                                     smallShipBoomed += 1;
                                     if (smallShipBoomed == 3) {
                                       smallShipBoomedFunc();
                                     }
                                     allShipsBoomed();
-                                    remainingHits();
                                   });
                                   ;
                                 },
@@ -102,13 +106,15 @@ class _GameStartedState extends State<GameStarted> {
                               return MyPixel(
                                 onTap: () {
                                   setState(() {
+                                    if (trueSelectedSmall2[i] == "first") {
+                                      remainingHits();
+                                    }
                                     trueSelectedSmall2[i] = "second";
                                     smallShip2Boomed += 1;
                                     if (smallShip2Boomed == 3) {
                                       smallShip2BoomedFunc();
                                     }
                                     allShipsBoomed();
-                                    remainingHits();
                                   });
                                   ;
                                 },
