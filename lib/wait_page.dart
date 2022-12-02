@@ -1,15 +1,11 @@
 import 'package:battleships/firebase_database_functions.dart';
 import 'package:battleships/global_enough_player.dart';
-import 'package:battleships/global_is_hit_ship.dart';
 import 'package:battleships/view/gameStarted.dart';
 import 'package:battleships/view/homepage.dart';
 import 'package:battleships/viewmodel/main_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'enough_player.dart';
-import 'is_ship_hit.dart';
-import 'package:battleships/viewmodel/defineLists.dart';
-import 'firebase_database_functions.dart';
 
 class waitPage extends StatefulWidget {
   const waitPage({super.key});
@@ -20,7 +16,6 @@ class waitPage extends StatefulWidget {
 
 class _waitPageState extends State<waitPage> {
   final enoughPlayer = EnoughPlayer();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +44,6 @@ class _waitPageState extends State<waitPage> {
               if (globalEnoughPlayer.playerEnough)
                 TextButton(
                   onPressed: () {
-                    if (player == whoseTurn) {
-                      isHitShip.didShipHit = true;
-                    }
                     playerMatch();
                     Navigator.push(
                         context,
@@ -79,6 +71,5 @@ class _waitPageState extends State<waitPage> {
     /* SafeArea(
       child: 
     );*/
-    ;
   }
 }

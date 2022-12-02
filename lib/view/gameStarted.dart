@@ -1,10 +1,13 @@
 import 'package:battleships/firebase_database_functions.dart';
+import 'package:battleships/global_enough_player.dart';
 import 'package:battleships/view/map.dart';
 import 'package:battleships/viewmodel/shipsboomed.dart';
+import 'package:battleships/whose_turn.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import '../viewmodel/defineLists.dart';
 import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
-import 'package:battleships/global_is_hit_ship.dart';
 
 class GameStarted extends StatefulWidget {
   @override
@@ -17,168 +20,173 @@ class _GameStartedState extends State<GameStarted> {
 
   Color hitShipColor = Colors.red;
   Color hitSeaColor = Colors.yellow;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[100],
-      body: Column(
-        children: [
-          if (isHitShip.didShipHit)
-            Expanded(
-              flex: 2,
-              child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: numberOfSquares,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 10,
+        backgroundColor: Colors.brown[100],
+        body: Observer(
+          builder: (_) => Column(
+            children: [
+              if (globalWhoseTurn.turnWhose)
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: numberOfSquares,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 10,
+                        ),
+                        itemBuilder: (
+                          BuildContext context,
+                          int index,
+                        ) {
+                          for (int i = 0; i < 5; i++) {
+                            if (enemyBigShipLocation[i] == index) {
+                              return MyPixel(
+                                onTap: () {
+                                  setState(() {
+                                    trueSelectedBig[i] = "second";
+                                    bigShipBoomed += 1;
+                                    if (bigShipBoomed == 5) {
+                                      bigShipBoomedFunc();
+                                    }
+                                    allShipsBoomed();
+                                    remainingHits();
+                                  });
+                                },
+                                color: trueSelectedBig[i] == "first"
+                                    ? mapColor
+                                    : hitShipColor,
+                                child: Text(
+                                  "1",
+                                  style: TextStyle(
+                                    fontSize: 5,
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                          for (int i = 0; i < 3; i++) {
+                            if (enemySmallShipLocation[i] == index) {
+                              return MyPixel(
+                                onTap: () {
+                                  setState(() {
+                                    trueSelectedSmall[i] = "second";
+                                    smallShipBoomed += 1;
+                                    if (smallShipBoomed == 3) {
+                                      smallShipBoomedFunc();
+                                    }
+                                    allShipsBoomed();
+                                    remainingHits();
+                                  });
+                                  ;
+                                },
+                                color: trueSelectedSmall[i] == "first"
+                                    ? mapColor
+                                    : hitShipColor,
+                                child: Text(
+                                  "1",
+                                  style: TextStyle(
+                                    fontSize: 5,
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                          for (int i = 0; i < 3; i++) {
+                            if (enemySmallShip2Location[i] == index) {
+                              return MyPixel(
+                                onTap: () {
+                                  setState(() {
+                                    trueSelectedSmall2[i] = "second";
+                                    smallShip2Boomed += 1;
+                                    if (smallShip2Boomed == 3) {
+                                      smallShip2BoomedFunc();
+                                    }
+                                    allShipsBoomed();
+                                    remainingHits();
+                                  });
+                                  ;
+                                },
+                                color: trueSelectedSmall2[i] == "first"
+                                    ? mapColor
+                                    : hitShipColor,
+                                child: Text(
+                                  "1",
+                                  style: TextStyle(
+                                    fontSize: 5,
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+
+                          for (int i = 0; i < 100; i++) {
+                            if (enemySmallShipLocation[i] != index ||
+                                enemyBigShipLocation[i] != index ||
+                                enemySmallShip2Location[i] != index) {
+                              return MyPixel(
+                                color: wrongSelectedBig[index] == "second" ||
+                                        wrongSelectedSmall[index] == "second" ||
+                                        wrongSelectedSmall2[index] == "second"
+                                    ? hitSeaColor
+                                    : mapColor,
+                                child: Text(
+                                  "0",
+                                  style: TextStyle(fontSize: 5),
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    FirebaseDatabase.instance
+                                        .ref()
+                                        .child('Whose-turn')
+                                        .set('$player');
+
+                                    if (wrongSelectedBig[index] == "first") {
+                                      wrongSelectedBig[index] = "second";
+                                    } else if (wrongSelectedSmall[index] ==
+                                        "first") {
+                                      wrongSelectedSmall[index] = "second";
+                                    } else {
+                                      wrongSelectedSmall2[index] = "second";
+                                    }
+                                  });
+                                },
+                              );
+                            }
+                          }
+
+                          return MyPixel();
+                        },
+                      ),
                     ),
-                    itemBuilder: (
-                      BuildContext context,
-                      int index,
-                    ) {
-                      for (int i = 0; i < 5; i++) {
-                        if (enemyBigShipLocation[i] == index) {
-                          return MyPixel(
-                            onTap: () {
-                              setState(() {
-                                trueSelectedBig[i] = "second";
-                                bigShipBoomed += 1;
-                                if (bigShipBoomed == 5) {
-                                  bigShipBoomedFunc();
-                                }
-                                allShipsBoomed();
-                                remainingHits();
-                              });
-                            },
-                            color: trueSelectedBig[i] == "first"
-                                ? mapColor
-                                : hitShipColor,
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 5,
-                              ),
-                            ),
-                          );
-                        }
-                      }
-                      for (int i = 0; i < 3; i++) {
-                        if (enemySmallShipLocation[i] == index) {
-                          return MyPixel(
-                            onTap: () {
-                              setState(() {
-                                trueSelectedSmall[i] = "second";
-                                smallShipBoomed += 1;
-                                if (smallShipBoomed == 3) {
-                                  smallShipBoomedFunc();
-                                }
-                                allShipsBoomed();
-                                remainingHits();
-                              });
-                              ;
-                            },
-                            color: trueSelectedSmall[i] == "first"
-                                ? mapColor
-                                : hitShipColor,
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 5,
-                              ),
-                            ),
-                          );
-                        }
-                      }
-                      for (int i = 0; i < 3; i++) {
-                        if (enemySmallShip2Location[i] == index) {
-                          return MyPixel(
-                            onTap: () {
-                              setState(() {
-                                trueSelectedSmall2[i] = "second";
-                                smallShip2Boomed += 1;
-                                if (smallShip2Boomed == 3) {
-                                  smallShip2BoomedFunc();
-                                }
-                                allShipsBoomed();
-                                remainingHits();
-                              });
-                              ;
-                            },
-                            color: trueSelectedSmall2[i] == "first"
-                                ? mapColor
-                                : hitShipColor,
-                            child: Text(
-                              "1",
-                              style: TextStyle(
-                                fontSize: 5,
-                              ),
-                            ),
-                          );
-                        }
-                      }
-
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-
-                      for (int i = 0; i < 100; i++) {
-                        if (enemySmallShipLocation[i] != index ||
-                            enemyBigShipLocation[i] != index ||
-                            enemySmallShip2Location[i] != index) {
-                          return MyPixel(
-                            color: wrongSelectedBig[index] == "second" ||
-                                    wrongSelectedSmall[index] == "second" ||
-                                    wrongSelectedSmall2[index] == "second"
-                                ? hitSeaColor
-                                : mapColor,
-                            child: Text(
-                              "0",
-                              style: TextStyle(fontSize: 5),
-                            ),
-                            onTap: () {
-                              setState(() {
-                                isHitShip.didShipHitChange();
-                                print(isHitShip.didShipHit);
-                                if (wrongSelectedBig[index] == "first") {
-                                  wrongSelectedBig[index] = "second";
-                                } else if (wrongSelectedSmall[index] ==
-                                    "first") {
-                                  wrongSelectedSmall[index] = "second";
-                                } else {
-                                  wrongSelectedSmall2[index] = "second";
-                                }
-                              });
-                            },
-                          );
-                        }
-                      }
-
-                      return MyPixel();
-                    },
                   ),
                 ),
-              ),
-            ),
-          if (!isHitShip.didShipHit)
-            Center(
-              child: Text(
-                "SIRA RAKİBİNDE",
-                style: TextStyle(fontSize: 50),
-              ),
-            )
-        ],
-      ),
-    );
+              if (!globalWhoseTurn.turnWhose)
+                const Center(
+                  child: Text(
+                    "SIRA RAKİBİNDE",
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
+                  ),
+                )
+            ],
+          ),
+        ));
   }
 }
