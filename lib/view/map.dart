@@ -39,10 +39,10 @@ class _MyMapState extends State<MyMap> {
                           width: 25,
                           height: 25,
                           color: matrixList[x][y],
-                          margin: EdgeInsets.all(3),
+                          margin: const EdgeInsets.all(3),
                         ),
                       ),
-                      onMove: (DragTargetDetails) {
+                      onMove: (dragTargetDetails) {
                         // dragTarget objeleri yerleştirmeden haritada gezdirirken nereye yerleşeceğini gösteren kısım
 
                         if (matrixList[x][y] == bigShipColor) {
@@ -52,7 +52,7 @@ class _MyMapState extends State<MyMap> {
                         } else if (matrixList[x][y] == smallShip2Color) {
                           matrixList[x][y] = smallShip2Color;
                         } else {
-                          if (DragTargetDetails.data == Colors.red[400]) {
+                          if (dragTargetDetails.data == Colors.red[400]) {
                             if (isBigShipRotate == 1) {
                               if (y == 8 ||
                                   y == 9 ||
@@ -86,7 +86,7 @@ class _MyMapState extends State<MyMap> {
                                 matrixList[x][y] = Colors.green;
                               }
                             }
-                          } else if (DragTargetDetails.data ==
+                          } else if (dragTargetDetails.data ==
                               Colors.red[300]) {
                             if (isSmallShip2Rotate == 1) {
                               if (y == 9 ||
@@ -297,12 +297,12 @@ class _MyMapState extends State<MyMap> {
                                 (dummyListSmall2Reverse[i] ~/ 10 +
                                     (dummyListSmall2Reverse[i] % 10) * 10);
                           }
-                          print("Big Ship Coordination : " +
-                              dummyListBig.toString());
-                          print("Small Ship Coordination : " +
-                              dummyListSmall.toString());
-                          print("Small Ship 2 Coordination : " +
-                              dummyListSmall2.toString());
+                          print(
+                              "Big Ship Coordination : ${dummyListBig.toString()}");
+                          print(
+                              "Big Ship Coordination : ${dummyListSmall.toString()}");
+                          print(
+                              "Big Ship Coordination : ${dummyListSmall2.toString()}");
                         });
                       },
                     ),

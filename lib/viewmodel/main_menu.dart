@@ -1,9 +1,8 @@
 import 'package:battleships/view/homepage.dart';
-import 'package:battleships/wait_page.dart';
 import 'package:flutter/material.dart';
 
-class mainMenu extends StatelessWidget {
-  const mainMenu({super.key});
+class MainMenu extends StatelessWidget {
+  const MainMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +11,19 @@ class mainMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             "MAIN MENU PAGE",
             style: TextStyle(fontSize: 30, color: Colors.black),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => const HomePage()),
               );
             },
-            child: Icon(
+            child: const Icon(
               Icons.play_arrow_rounded,
               size: 30,
             ),

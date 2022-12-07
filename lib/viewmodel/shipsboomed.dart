@@ -1,7 +1,3 @@
-import 'package:battleships/viewmodel/defineLists.dart';
-import 'package:flutter/material.dart';
-import 'defineLists.dart';
-
 int bigShipBoomed = 0;
 int smallShipBoomed = 0;
 int smallShip2Boomed = 0;

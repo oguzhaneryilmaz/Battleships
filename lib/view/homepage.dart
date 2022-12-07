@@ -1,6 +1,4 @@
 import 'package:battleships/firebase_database_functions.dart';
-import 'package:battleships/view/gameStarted.dart';
-
 import 'package:battleships/view/map.dart';
 import 'package:battleships/wait_page.dart';
 import 'package:flutter/material.dart';
@@ -47,26 +45,26 @@ class _HomePageState extends State<HomePage> {
                       flex: 4,
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 40,
                           ),
                           Container(
                             width: 30,
-                            child: SmallShip(),
+                            child: const SmallShip(),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 70,
                           ),
                           Container(
                             width: 30,
-                            child: SmallShip2(),
+                            child: const SmallShip2(),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 100,
                           ),
                           Container(
                             width: 30,
-                            child: BigShip(),
+                            child: const BigShip(),
                           ),
                         ],
                       ),
@@ -75,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                       child: GestureDetector(
                           child: Container(
                             color: Colors.red,
-                            child: Text(
+                            child: const Text(
                               "START",
                               style: TextStyle(
                                 fontSize: 24,
@@ -86,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             if (isBigVisible == true &&
                                 isSmall2Visible == true &&
-                                isSmallVisible == true)
+                                isSmallVisible == true) {
                               setState(() {
                                 {
                                   isStartButtonVisible = true;
@@ -106,11 +104,12 @@ class _HomePageState extends State<HomePage> {
 
                                 }
                               });
+                            }
                             if (isStartButtonVisible == true) {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => waitPage(),
+                                  builder: (context) => const WaitPage(),
                                 ),
                               );
                             } else {

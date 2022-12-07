@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class MyPixel extends StatelessWidget {
   final color;
   final child;
   final onTap;
 
-  MyPixel({this.color, this.child, this.onTap});
+  const MyPixel({super.key, this.color, this.child, this.onTap});
   @override
   Widget build(BuildContext context) {
     return Padding(

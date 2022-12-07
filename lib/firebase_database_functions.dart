@@ -1,8 +1,5 @@
-import 'package:battleships/enough_player.dart';
 import 'package:battleships/global_enough_player.dart';
 import 'package:battleships/viewmodel/defineLists.dart';
-import 'package:battleships/whose_turn.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:uuid/uuid.dart';
 
@@ -66,7 +63,7 @@ createTest() {
 
   // whose turn kısmı
 
-  FirebaseDatabase.instance.ref().child('Whose-turn').set('$player');
+  FirebaseDatabase.instance.ref().child('Whose-turn').set(player);
 
   DatabaseReference ref1 = FirebaseDatabase.instance.ref('Whose-turn');
   ref1.onValue.listen((DatabaseEvent event1) {
@@ -74,7 +71,6 @@ createTest() {
 
     if (whoseTurnId != player) {
       globalWhoseTurn.turnWhoseChange(true);
-      print('OKOK : $whoseTurnId');
     } else {
       globalWhoseTurn.turnWhoseChange(false);
     }
@@ -84,10 +80,10 @@ createTest() {
 remainingHits() {
   late int databaseRemainHitsA;
   late int databaseRemainHitsB;
-  DatabaseReference _test2 =
+  DatabaseReference test2 =
       FirebaseDatabase.instance.ref().child("Game-Room-1/rH-$player");
   testInteger--;
-  _test2.set(testInteger);
+  test2.set(testInteger);
   DatabaseReference ref2 =
       FirebaseDatabase.instance.ref("Game-Room-1/rH-${databasePlayerList[0]}");
   ref2.onValue.listen((eventA) {
@@ -164,9 +160,6 @@ playerMatch() {
   // }
 
   if (databasePlayerList.length >= 2) {
-    var uniqueGame = uniqueRoom;
-    DatabaseReference p1 =
-        FirebaseDatabase.instance.ref().child('Game-Room-1/p1');
     FirebaseDatabase.instance
         .ref()
         .child('Game-Room-1/p1/Player ID')
@@ -175,8 +168,6 @@ playerMatch() {
     DatabaseReference matchedP1ShipLocs =
         FirebaseDatabase.instance.ref().child('Game-Room-1/p1/ShipLocations');
     matchedP1ShipLocs.set(dataAsMap[databasePlayerList[0]]);
-    DatabaseReference p2 =
-        FirebaseDatabase.instance.ref().child('Game-Room-1/p2');
     FirebaseDatabase.instance
         .ref()
         .child('Game-Room-1/p2/Player ID')

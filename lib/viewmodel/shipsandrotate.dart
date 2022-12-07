@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:battleships/viewmodel/defineLists.dart';
-import 'package:battleships/view/map.dart';
 import 'package:flutter/material.dart';
 
 bool isStartButtonVisible = false;
@@ -25,9 +24,12 @@ Color? small2BeforeColor = Colors.red[300];
 // hangi objenin droplandığını ayırt edebilmek
 Color? bigBeforeColor = Colors.red[400];
 
-ImageProvider<Object> shipImage = AssetImage('lib/assets/images/shipImage.png');
+ImageProvider<Object> shipImage =
+    const AssetImage('lib/assets/images/shipImage.png');
 
 class SmallShip2 extends StatefulWidget {
+  const SmallShip2({super.key});
+
   @override
   State<SmallShip2> createState() => _SmallShip2State();
 }
@@ -53,14 +55,14 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    animationController1 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController2 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController3 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController4 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    animationController1 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController2 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController3 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController4 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
 
     animation1 =
         Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
@@ -104,20 +106,6 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
             }
           },
           data: small2BeforeColor,
-          child: Container(
-            width: shipsWidth,
-            height: smallShip2Height,
-            child: GestureDetector(
-              onTap: _rotateChildContinuously,
-              child: RotateTrans(
-                Image(
-                  image: shipImage,
-                  fit: BoxFit.fill,
-                ),
-                buildAnimation(),
-              ),
-            ),
-          ),
           childWhenDragging: Container(
             color: Colors.brown[200],
           ),
@@ -132,6 +120,20 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
                     fit: BoxFit.fill,
                   ),
                   buildAnimation2()),
+            ),
+          ),
+          child: Container(
+            width: shipsWidth,
+            height: smallShip2Height,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                Image(
+                  image: shipImage,
+                  fit: BoxFit.fill,
+                ),
+                buildAnimation(),
+              ),
             ),
           ),
         ),
@@ -197,6 +199,8 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
 }
 
 class SmallShip extends StatefulWidget {
+  const SmallShip({super.key});
+
   @override
   State<SmallShip> createState() => _SmallShipState();
 }
@@ -222,14 +226,14 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    animationController1 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController2 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController3 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController4 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    animationController1 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController2 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController3 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController4 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
 
     animation1 =
         Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
@@ -272,20 +276,6 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
             }
           },
           data: smallBeforeColor,
-          child: Container(
-            width: shipsWidth,
-            height: smallShipHeight,
-            child: GestureDetector(
-              onTap: _rotateChildContinuously,
-              child: RotateTrans(
-                Image(
-                  image: shipImage,
-                  fit: BoxFit.fill,
-                ),
-                buildAnimation(),
-              ),
-            ),
-          ),
           childWhenDragging: Container(
             color: Colors.brown[200],
           ),
@@ -300,6 +290,20 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
                     fit: BoxFit.fill,
                   ),
                   buildAnimation2()),
+            ),
+          ),
+          child: Container(
+            width: shipsWidth,
+            height: smallShipHeight,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                Image(
+                  image: shipImage,
+                  fit: BoxFit.fill,
+                ),
+                buildAnimation(),
+              ),
             ),
           ),
         ),
@@ -365,6 +369,8 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
 }
 
 class BigShip extends StatefulWidget {
+  const BigShip({super.key});
+
   @override
   State<BigShip> createState() => _BigShipState();
 }
@@ -390,22 +396,22 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    animationController1 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController2 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController3 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController4 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    animationController5 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
-    animationController6 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
-    animationController7 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
-    animationController8 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 0));
+    animationController1 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController2 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController3 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController4 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    animationController5 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 0));
+    animationController6 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 0));
+    animationController7 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 0));
+    animationController8 = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 0));
     animation1 =
         Tween<double>(begin: 0, end: pi / 2).animate(animationController1!);
     animation2 =
@@ -448,20 +454,6 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
             }
           },
           data: bigBeforeColor,
-          child: Container(
-            width: shipsWidth,
-            height: bigShipHeight,
-            child: GestureDetector(
-              onTap: _rotateChildContinuously,
-              child: RotateTrans(
-                Image(
-                  image: shipImage,
-                  fit: BoxFit.fill,
-                ),
-                buildAnimation(),
-              ),
-            ),
-          ),
           childWhenDragging: Container(
             color: Colors.brown[200],
           ),
@@ -476,6 +468,20 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
                     fit: BoxFit.fill,
                   ),
                   buildAnimation2()),
+            ),
+          ),
+          child: Container(
+            width: shipsWidth,
+            height: bigShipHeight,
+            child: GestureDetector(
+              onTap: _rotateChildContinuously,
+              child: RotateTrans(
+                Image(
+                  image: shipImage,
+                  fit: BoxFit.fill,
+                ),
+                buildAnimation(),
+              ),
             ),
           ),
         ),
@@ -546,19 +552,17 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
 class RotateTrans extends StatelessWidget {
   final Widget child;
   final Animation<double> animation;
-  RotateTrans(this.child, this.animation);
+  const RotateTrans(this.child, this.animation, {super.key});
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: animation,
       child: child,
       builder: (context, child) {
-        return Container(
-          child: Transform.rotate(
-            angle: animation.value,
-            child: Container(
-              child: child,
-            ),
+        return Transform.rotate(
+          angle: animation.value,
+          child: Container(
+            child: child,
           ),
         );
       },
