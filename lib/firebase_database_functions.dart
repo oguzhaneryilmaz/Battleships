@@ -1,6 +1,10 @@
+import 'dart:js';
+
 import 'package:battleships/global_enough_player.dart';
 import 'package:battleships/viewmodel/defineLists.dart';
+import 'package:battleships/viewmodel/main_menu.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 late String whoseTurnId;
@@ -98,16 +102,21 @@ remainingHits() {
   ref4.onValue.listen((eventC) {
     if (databaseRemainHitsA == 0) {
       if (player == databasePlayerList[0]) {
-        print("OYUNU KAZANDINIZ");
+        globalGameFinished.changeDidUWin(true);
+        globalWhoseTurn.turnWhoseChange(false);
       } else {
-        print("OYUNU KAYBETTİNİZ");
+        globalGameFinished.changeDidULose(true);
+        globalWhoseTurn.turnWhoseChange(false);
       }
     }
     if (databaseRemainHitsB == 0) {
       if (player == databasePlayerList[1]) {
-        print("OYUNU KAZANDINIZ");
+        globalGameFinished.changeDidUWin(true);
+        globalWhoseTurn.turnWhoseChange(false);
       } else {
         print("OYUNU KAYBETTİNİZ");
+        globalGameFinished.changeDidULose(true);
+        globalWhoseTurn.turnWhoseChange(false);
       }
     }
   });

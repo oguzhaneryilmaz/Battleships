@@ -1,12 +1,14 @@
 import 'package:battleships/firebase_database_functions.dart';
 import 'package:battleships/global_enough_player.dart';
 import 'package:battleships/view/map.dart';
+import 'package:battleships/viewmodel/main_menu.dart';
 import 'package:battleships/viewmodel/shipsboomed.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../viewmodel/defineLists.dart';
 import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
+import 'package:battleships/game_finished.dart';
 
 class GameStarted extends StatefulWidget {
   const GameStarted({super.key});
@@ -189,7 +191,55 @@ class _GameStartedState extends State<GameStarted> {
                       ),
                     ),
                   ],
-                )
+                ),
+              if (globalGameFinished.didUWin)
+                AlertDialog(
+                  title: const Text('AlertDialog Title'),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: const <Widget>[
+                        Text('Game Finished, You Won'),
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainMenu(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              if (globalGameFinished.didULose)
+                AlertDialog(
+                  title: const Text('AlertDialog Title'),
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: const <Widget>[
+                        Text('Game Finished, You Lost'),
+                      ],
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainMenu(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
             ],
           ),
         ));
