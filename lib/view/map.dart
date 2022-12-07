@@ -297,12 +297,12 @@ class _MyMapState extends State<MyMap> {
                                 (dummyListSmall2Reverse[i] ~/ 10 +
                                     (dummyListSmall2Reverse[i] % 10) * 10);
                           }
-                          print(
-                              "Big Ship Coordination : ${dummyListBig.toString()}");
-                          print(
-                              "Big Ship Coordination : ${dummyListSmall.toString()}");
-                          print(
-                              "Big Ship Coordination : ${dummyListSmall2.toString()}");
+                          // print(
+                          //     "Big Ship Coordination : ${dummyListBig.toString()}");
+                          // print(
+                          //     "Big Ship Coordination : ${dummyListSmall.toString()}");
+                          // print(
+                          //     "Big Ship Coordination : ${dummyListSmall2.toString()}");
                         });
                       },
                     ),

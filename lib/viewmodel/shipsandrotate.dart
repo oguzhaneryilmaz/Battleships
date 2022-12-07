@@ -142,7 +142,7 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
   }
 
   _rotateChildContinuously() {
-    print(rotateTime);
+    // print(rotateTime);
     setState(() {
       rotateTime++;
       if (rotateTime == 1) {
@@ -312,7 +312,7 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
   }
 
   _rotateChildContinuously() {
-    print(rotateTime);
+    // print(rotateTime);
     setState(() {
       rotateTime++;
       if (rotateTime == 1) {
@@ -490,7 +490,7 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
   }
 
   _rotateChildContinuously() {
-    print(rotateTime);
+    // print(rotateTime);
     setState(() {
       rotateTime++;
       if (rotateTime == 1) {

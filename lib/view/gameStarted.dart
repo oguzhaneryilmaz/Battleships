@@ -8,7 +8,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../viewmodel/defineLists.dart';
 import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
-import 'package:battleships/game_finished.dart';
 
 class GameStarted extends StatefulWidget {
   const GameStarted({super.key});

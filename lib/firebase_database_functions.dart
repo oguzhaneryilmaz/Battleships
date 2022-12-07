@@ -1,10 +1,6 @@
-import 'dart:js';
-
 import 'package:battleships/global_enough_player.dart';
 import 'package:battleships/viewmodel/defineLists.dart';
-import 'package:battleships/viewmodel/main_menu.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 late String whoseTurnId;
@@ -104,19 +100,67 @@ remainingHits() {
       if (player == databasePlayerList[0]) {
         globalGameFinished.changeDidUWin(true);
         globalWhoseTurn.turnWhoseChange(false);
+
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[0]}')
+            .remove();
+
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[1]}')
+            .remove();
+        databasePlayerList.clear();
+        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
+        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       } else {
         globalGameFinished.changeDidULose(true);
         globalWhoseTurn.turnWhoseChange(false);
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[0]}')
+            .remove();
+
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[1]}')
+            .remove();
+        databasePlayerList.clear();
+        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
+        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       }
     }
     if (databaseRemainHitsB == 0) {
       if (player == databasePlayerList[1]) {
         globalGameFinished.changeDidUWin(true);
         globalWhoseTurn.turnWhoseChange(false);
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[0]}')
+            .remove();
+
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[1]}')
+            .remove();
+        databasePlayerList.clear();
+        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
+        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       } else {
-        print("OYUNU KAYBETTİNİZ");
         globalGameFinished.changeDidULose(true);
         globalWhoseTurn.turnWhoseChange(false);
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[0]}')
+            .remove();
+
+        FirebaseDatabase.instance
+            .ref()
+            .child('Waiting-room/${databasePlayerList[1]}')
+            .remove();
+        databasePlayerList.clear();
+        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
+        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       }
     }
   });
