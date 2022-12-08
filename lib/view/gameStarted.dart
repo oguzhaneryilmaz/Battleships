@@ -205,6 +205,7 @@ class _GameStartedState extends State<GameStarted> {
                     TextButton(
                       child: const Text('OK'),
                       onPressed: () {
+                        finishGame();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -229,6 +230,7 @@ class _GameStartedState extends State<GameStarted> {
                     TextButton(
                       child: const Text('OK'),
                       onPressed: () {
+                        finishGame();
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -100,67 +100,18 @@ remainingHits() {
       if (player == databasePlayerList[0]) {
         globalGameFinished.changeDidUWin(true);
         globalWhoseTurn.turnWhoseChange(false);
-
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[0]}')
-            .remove();
-
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[1]}')
-            .remove();
-        databasePlayerList.clear();
-        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
-        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       } else {
         globalGameFinished.changeDidULose(true);
         globalWhoseTurn.turnWhoseChange(false);
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[0]}')
-            .remove();
-
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[1]}')
-            .remove();
-        databasePlayerList.clear();
-        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
-        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       }
     }
     if (databaseRemainHitsB == 0) {
       if (player == databasePlayerList[1]) {
         globalGameFinished.changeDidUWin(true);
         globalWhoseTurn.turnWhoseChange(false);
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[0]}')
-            .remove();
-
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[1]}')
-            .remove();
-        databasePlayerList.clear();
-        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
-        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       } else {
         globalGameFinished.changeDidULose(true);
         globalWhoseTurn.turnWhoseChange(false);
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[0]}')
-            .remove();
-
-        FirebaseDatabase.instance
-            .ref()
-            .child('Waiting-room/${databasePlayerList[1]}')
-            .remove();
-        databasePlayerList.clear();
-        FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
-        FirebaseDatabase.instance.ref().child('Whose-turn').remove();
       }
     }
   });
@@ -182,7 +133,17 @@ remainingHits() {
 // }
 
 finishGame() {
-  // FirebaseDatabase.instance.ref().child("room$uniqueRoom").remove();
+  FirebaseDatabase.instance
+      .ref()
+      .child('Waiting-room/${databasePlayerList[0]}')
+      .remove();
+  FirebaseDatabase.instance
+      .ref()
+      .child('Waiting-room/${databasePlayerList[1]}')
+      .remove();
+  databasePlayerList.clear();
+  FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
+  FirebaseDatabase.instance.ref().child('Whose-turn').remove();
 }
 
 playerMatch() {

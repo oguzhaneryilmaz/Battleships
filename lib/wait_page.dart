@@ -19,51 +19,56 @@ class _WaitPageState extends State<WaitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Observer(builder: (_) {
-        return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                "Waiting for an opponent",
-                style: TextStyle(fontSize: 20, color: Colors.red),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => const MainMenu()),
-                      ),
-                    );
-                  },
-                  child: const Icon(Icons.close)),
-              if (globalEnoughPlayer.playerEnough)
-                TextButton(
-                  onPressed: () {
-                    playerMatch();
-                    Navigator.push(
+        return Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  "Waiting for an opponent",
+                  style: TextStyle(fontSize: 20, color: Colors.red),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const GameStarted(),
-                        ));
-                  },
-                  child: const Text("Game Found"),
+                          builder: ((context) => const MainMenu()),
+                        ),
+                      );
+                    },
+                    child: const Icon(Icons.close)),
+                const SizedBox(
+                  height: 20,
                 ),
-              if (!globalEnoughPlayer.playerEnough)
-                const Text('Waiting Second Player...'),
-              /*IgnorePointer(
-                ignoring: playerEnough,
-                child: TextButton(
-                  onPressed: () {
-                    playerMatch();
-                  },
-                  child: Text("Game Found"),
-                ),
-              ),*/
-            ]);
+                if (globalEnoughPlayer.playerEnough)
+                  TextButton(
+                    onPressed: () {
+                      playerMatch();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GameStarted(),
+                          ));
+                    },
+                    child: const Text("Game Found"),
+                  ),
+                if (!globalEnoughPlayer.playerEnough)
+                  const Text('Waiting Second Player...'),
+                /*IgnorePointer(
+                  ignoring: playerEnough,
+                  child: TextButton(
+                    onPressed: () {
+                      playerMatch();
+                    },
+                    child: Text("Game Found"),
+                  ),
+                ),*/
+              ]),
+        );
       }),
     );
 
