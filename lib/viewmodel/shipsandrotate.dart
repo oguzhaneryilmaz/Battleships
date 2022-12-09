@@ -107,7 +107,7 @@ class _SmallShip2State extends State<SmallShip2> with TickerProviderStateMixin {
           },
           data: small2BeforeColor,
           childWhenDragging: Container(
-            color: Colors.brown[200],
+            color: Colors.transparent,
           ),
           feedback: Container(
             width: shipsWidth,
@@ -277,7 +277,7 @@ class _SmallShipState extends State<SmallShip> with TickerProviderStateMixin {
           },
           data: smallBeforeColor,
           childWhenDragging: Container(
-            color: Colors.brown[200],
+            color: Colors.transparent,
           ),
           feedback: Container(
             width: shipsWidth,
@@ -455,7 +455,7 @@ class _BigShipState extends State<BigShip> with TickerProviderStateMixin {
           },
           data: bigBeforeColor,
           childWhenDragging: Container(
-            color: Colors.brown[200],
+            color: Colors.transparent,
           ),
           feedback: Container(
             width: shipsWidth,
