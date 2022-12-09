@@ -185,15 +185,15 @@ class _GameStartedState extends State<GameStarted> {
                 ),
               ),
             if (!globalWhoseTurn.turnWhose)
-              Column(
-                children: const [
-                  Center(
-                    child: Text(
-                      "SIRA RAKİBİNDE",
-                      style: TextStyle(fontSize: 40),
-                    ),
-                  ),
-                ],
+              const SizedBox(
+                height: 50,
+              ),
+            if (!globalWhoseTurn.turnWhose)
+              const Center(
+                child: Text(
+                  "OPPONENT'S TURN",
+                  style: TextStyle(fontSize: 40),
+                ),
               ),
             if (globalGameFinished.didUWin)
               AlertDialog(
