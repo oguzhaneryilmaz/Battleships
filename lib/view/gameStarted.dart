@@ -197,11 +197,14 @@ class _GameStartedState extends State<GameStarted> {
               ),
             if (globalGameFinished.didUWin)
               AlertDialog(
-                title: const Text('AlertDialog Title'),
+                title: const Text('Game Finished'),
                 content: SingleChildScrollView(
                   child: ListBody(
                     children: const <Widget>[
-                      Text('Game Finished, You Won'),
+                      Text(
+                        'You Won',
+                        style: TextStyle(color: Colors.green),
+                      ),
                     ],
                   ),
                 ),
@@ -222,11 +225,14 @@ class _GameStartedState extends State<GameStarted> {
               ),
             if (globalGameFinished.didULose)
               AlertDialog(
-                title: const Text('AlertDialog Title'),
+                title: const Text('Game Finished'),
                 content: SingleChildScrollView(
                   child: ListBody(
                     children: const <Widget>[
-                      Text('Game Finished, You Lost'),
+                      Text(
+                        'You Lost',
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ],
                   ),
                 ),
