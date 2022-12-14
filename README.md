@@ -27,3 +27,7 @@ Battleship is an multiplayer cross platform game that can run in iOS,macOS,Web a
 3. After the placement process complete, click 'START'
 4. Then we're trying to hit the tiles that our opponent put their ships on.
 5. First one who destroys all the 3 ships wins.
+
+Used Languages:
+<a href="https://dotnet.microsoft.com/en-us/languages/csharp" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/csharp.svg" alt="C#" width="40" height="40"/> </a> 
+<a href="https://dart.dev/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png" alt="Dart" width="40" height="40"/> </a> 
