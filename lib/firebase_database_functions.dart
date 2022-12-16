@@ -1,7 +1,12 @@
-import 'package:battleships/global_enough_player.dart';
-import 'package:battleships/viewmodel/defineLists.dart';
+import 'package:battleships/viewmodel/main_menu.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../global_enough_player.dart';
+import '../viewmodel/defineLists.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:uuid/uuid.dart';
+import 'package:restart_app/restart_app.dart';
 
 late String whoseTurnId;
 var randomNum = const Uuid();
@@ -14,7 +19,8 @@ Map testDataAsMap = {};
 String testString = "Nickname";
 int testInteger = trueSelectedBig.length +
     trueSelectedSmall.length +
-    trueSelectedSmall2.length;
+    trueSelectedSmall2.length +
+    trueSelectedBig2.length;
 createTest() {
   globalEnoughPlayer.initBase();
   databasePlayerList.insert(0, player);
@@ -25,6 +31,10 @@ createTest() {
       .ref()
       .child("Waiting-room/${databasePlayerList[0]}/BigShipLocation");
   bigShipLocation.set(dummyListBig);
+  DatabaseReference bigShip2Location = FirebaseDatabase.instance
+      .ref()
+      .child("Waiting-room/${databasePlayerList[0]}/BigShip2Location");
+  bigShip2Location.set(dummyListBig2);
   DatabaseReference smallShipLocation = FirebaseDatabase.instance
       .ref()
       .child("Waiting-room/${databasePlayerList[0]}/SmallShipLocation");
@@ -50,14 +60,15 @@ createTest() {
         shipLocationAsMap = dataAsMap[databasePlayerList[0]];
 
         enemyBigShipLocation = List.from(shipLocationAsMap['BigShipLocation']);
+        enemyBigShip2Location =
+            List.from(shipLocationAsMap['BigShip2Location']);
         enemySmallShipLocation =
             List.from(shipLocationAsMap['SmallShipLocation']);
         enemySmallShip2Location =
             List.from(shipLocationAsMap['SmallShip2Location']);
-        // print(
-        //     'DÜŞMAN BİG SHİP : $enemyBigShipLocation \n DÜŞMAN SMALL SHİP : $enemySmallShipLocation \nDÜŞMAN SMALL SHİP 2 : $enemySmallShip2Location');
-
       }
+    } else {
+      globalEnoughPlayer.playerEnoughChange(false);
     }
   });
 
@@ -117,91 +128,51 @@ remainingHits() {
   });
 }
 
-// shipPlacement() {
-//   DatabaseReference bigShipLoc = FirebaseDatabase.instance
-//       .ref()
-//       .child("Waiting-room/${databasePlayerList.length - 1}");
-//   bigShipLoc.set(dummyListBig);
-//   DatabaseReference smallShipLoc = FirebaseDatabase.instance
-//       .ref()
-//       .child("Waiting-room/${databasePlayerList.length - 1}");
-//   smallShipLoc.set(dummyListSmall);
-//   DatabaseReference smallShip2Loc = FirebaseDatabase.instance
-//       .ref()
-//       .child("Waiting-room/${databasePlayerList.length - 1}");
-//   smallShip2Loc.set(dummyListSmall2);
-// }
-
-finishGame() {
+cancelGame(BuildContext context) {
   FirebaseDatabase.instance
       .ref()
       .child('Waiting-room/${databasePlayerList[0]}')
       .remove();
+  FirebaseDatabase.instance.ref().child('Whose-turn').remove();
+  databasePlayerList.remove(player);
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const MainMenu(),
+    ),
+  );
+}
+
+finishGame() {
+  FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
+  FirebaseDatabase.instance.ref().child('Whose-turn').remove();
+  FirebaseDatabase.instance
+      .ref()
+      .child('Waiting-room/${databasePlayerList[0]}')
+      .remove();
+
   FirebaseDatabase.instance
       .ref()
       .child('Waiting-room/${databasePlayerList[1]}')
       .remove();
-  databasePlayerList.clear();
-  FirebaseDatabase.instance.ref().child('Game-Room-1').remove();
-  FirebaseDatabase.instance.ref().child('Whose-turn').remove();
+  Restart.restartApp();
 }
 
 playerMatch() {
-  // if (databasePlayerList.length >= 2) {
-  //   FirebaseDatabase.instance
-  //       .ref()
-  //       .child("Testing-room/${databasePlayerList[0]}");
-  //   FirebaseDatabase.instance
-  //       .ref()
-  //       .child("game-room-UNİQUENUMBER/${databasePlayerList[0]}");
-  //   FirebaseDatabase.instance
-  //       .ref()
-  //       .child("Testing-room/${databasePlayerList[1]}");
-  //   FirebaseDatabase.instance
-  //       .ref()
-  //       .child("game-room-UNİQUENUMBER/${databasePlayerList[1]}");
-  // } else {
-  //   print("rakip bekleniyor");
-  //   DatabaseReference fetchData = FirebaseDatabase.instance.ref('Testing-room');
-  //   fetchData.onValue.listen((event) {
-  //     final data = event.snapshot.value;
-  //     databasePlayerList.insert(0, data);
-  //     DatabaseReference listAddPlayer =
-  //         FirebaseDatabase.instance.ref().child("Waiting-room");
-  //     listAddPlayer.set(databasePlayerList);Game-Room-1
-  //     FirebaseDatabase.instance.ref('Testing-room').remove();
-  //   });
-  // }
+  FirebaseDatabase.instance
+      .ref()
+      .child('Game-Room-1/p1/Player ID')
+      .set(databasePlayerList[0]);
 
-  if (databasePlayerList.length >= 2) {
-    FirebaseDatabase.instance
-        .ref()
-        .child('Game-Room-1/p1/Player ID')
-        .set(databasePlayerList[0]);
+  DatabaseReference matchedP1ShipLocs =
+      FirebaseDatabase.instance.ref().child('Game-Room-1/p1/ShipLocations');
+  matchedP1ShipLocs.set(dataAsMap[databasePlayerList[0]]);
+  FirebaseDatabase.instance
+      .ref()
+      .child('Game-Room-1/p2/Player ID')
+      .set(databasePlayerList[1]);
+  DatabaseReference matchedP2ShipLocs =
+      FirebaseDatabase.instance.ref().child('Game-Room-1/p2/ShipLocations');
 
-    DatabaseReference matchedP1ShipLocs =
-        FirebaseDatabase.instance.ref().child('Game-Room-1/p1/ShipLocations');
-    matchedP1ShipLocs.set(dataAsMap[databasePlayerList[0]]);
-    FirebaseDatabase.instance
-        .ref()
-        .child('Game-Room-1/p2/Player ID')
-        .set(databasePlayerList[1]);
-    DatabaseReference matchedP2ShipLocs =
-        FirebaseDatabase.instance.ref().child('Game-Room-1/p2/ShipLocations');
-
-    matchedP2ShipLocs.set(dataAsMap[databasePlayerList[1]]);
-    // FirebaseDatabase.instance
-    //     .ref()
-    //     .child('Waiting-room/${databasePlayerList[0]}')
-    //     .remove();
-    // FirebaseDatabase.instance
-    //     .ref()
-    //     .child('Waiting-room/${databasePlayerList[1]}')
-    //     .remove();
-    //   print('DATABASE PLAYER LİST : $databasePlayerList');
-    //   databasePlayerList.clear();
-    //   print('DATABASE PLAYER LİST : $databasePlayerList');
-    // } else {
-    //   print("rakip bekleniyor");
-  }
+  matchedP2ShipLocs.set(dataAsMap[databasePlayerList[1]]);
 }

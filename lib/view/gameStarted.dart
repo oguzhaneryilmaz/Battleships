@@ -1,13 +1,12 @@
-import 'package:battleships/firebase_database_functions.dart';
-import 'package:battleships/global_enough_player.dart';
-import 'package:battleships/view/map.dart';
-import 'package:battleships/viewmodel/main_menu.dart';
-import 'package:battleships/viewmodel/shipsboomed.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../viewmodel/defineLists.dart';
-import 'package:battleships/viewmodel/pixel.dart';
 import 'package:flutter/material.dart';
+import '../viewmodel/main_menu.dart';
+import '../viewmodel/defineLists.dart';
+import '../viewmodel/pixel.dart';
+import '../view/map.dart';
+import '../firebase_database_functions.dart';
+import '../global_enough_player.dart';
 
 class GameStarted extends StatefulWidget {
   const GameStarted({super.key});
@@ -58,14 +57,32 @@ class _GameStartedState extends State<GameStarted> {
                                   remainingHits();
                                 }
                                 trueSelectedBig[i] = "second";
-                                bigShipBoomed += 1;
-                                if (bigShipBoomed == 5) {
-                                  bigShipBoomedFunc();
-                                }
-                                allShipsBoomed();
                               });
                             },
                             color: trueSelectedBig[i] == "first"
+                                ? mapColor
+                                : hitShipColor,
+                            child: const Text(
+                              "1",
+                              style: TextStyle(
+                                fontSize: 5,
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                      for (int i = 0; i < 5; i++) {
+                        if (enemyBigShip2Location[i] == index) {
+                          return MyPixel(
+                            onTap: () {
+                              setState(() {
+                                if (trueSelectedBig2[i] == "first") {
+                                  remainingHits();
+                                }
+                                trueSelectedBig2[i] = "second";
+                              });
+                            },
+                            color: trueSelectedBig2[i] == "first"
                                 ? mapColor
                                 : hitShipColor,
                             child: const Text(
@@ -86,11 +103,6 @@ class _GameStartedState extends State<GameStarted> {
                                   remainingHits();
                                 }
                                 trueSelectedSmall[i] = "second";
-                                smallShipBoomed += 1;
-                                if (smallShipBoomed == 3) {
-                                  smallShipBoomedFunc();
-                                }
-                                allShipsBoomed();
                               });
                             },
                             color: trueSelectedSmall[i] == "first"
@@ -114,11 +126,6 @@ class _GameStartedState extends State<GameStarted> {
                                   remainingHits();
                                 }
                                 trueSelectedSmall2[i] = "second";
-                                smallShip2Boomed += 1;
-                                if (smallShip2Boomed == 3) {
-                                  smallShip2BoomedFunc();
-                                }
-                                allShipsBoomed();
                               });
                             },
                             color: trueSelectedSmall2[i] == "first"

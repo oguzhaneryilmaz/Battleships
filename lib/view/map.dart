@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:battleships/viewmodel/shipsandrotate.dart';
-import 'package:battleships/viewmodel/defineLists.dart';
+import '../viewmodel/shipsandrotate.dart';
+import '../viewmodel/defineLists.dart';
 
-Color bigShipColor = Colors
-    .brown; // gemiler yerleştirildikten sonra haritada değiştirecekleri renkler
+Color bigShipColor = Colors.brown;
+Color bigShip2Color = Colors
+    .deepOrange; // gemiler yerleştirildikten sonra haritada değiştirecekleri renkler
 Color smallShipColor = Colors.yellow;
 Color smallShip2Color = Colors.purple;
 //
@@ -50,6 +51,8 @@ class _MyMapState extends State<MyMap> {
                             matrixList[x][y] = bigShipColor;
                           } else if (matrixList[x][y] == smallShipColor) {
                             matrixList[x][y] = smallShipColor;
+                          } else if (matrixList[x][y] == bigShip2Color) {
+                            matrixList[x][y] = bigShip2Color;
                           } else if (matrixList[x][y] == smallShip2Color) {
                             matrixList[x][y] = smallShip2Color;
                           } else {
@@ -61,11 +64,15 @@ class _MyMapState extends State<MyMap> {
                                     y == 0 ||
                                     matrixList[x][y - 1] == smallShip2Color ||
                                     matrixList[x][y - 1] == smallShipColor ||
+                                    matrixList[x][y - 1] == bigShip2Color ||
                                     matrixList[x][y - 2] == smallShip2Color ||
                                     matrixList[x][y - 2] == smallShipColor ||
+                                    matrixList[x][y - 2] == bigShip2Color ||
                                     matrixList[x][y + 1] == smallShip2Color ||
                                     matrixList[x][y + 1] == smallShipColor ||
+                                    matrixList[x][y + 1] == bigShip2Color ||
                                     matrixList[x][y + 2] == smallShip2Color ||
+                                    matrixList[x][y + 2] == bigShip2Color ||
                                     matrixList[x][y + 2] == smallShipColor) {
                                 } else {
                                   matrixList[x][y] = Colors.green;
@@ -77,10 +84,57 @@ class _MyMapState extends State<MyMap> {
                                     x == 0 ||
                                     matrixList[x - 1][y] == smallShip2Color ||
                                     matrixList[x - 1][y] == smallShipColor ||
+                                    matrixList[x - 1][y] == bigShip2Color ||
+                                    matrixList[x - 2][y] == bigShip2Color ||
                                     matrixList[x - 2][y] == smallShip2Color ||
                                     matrixList[x - 2][y] == smallShipColor ||
+                                    matrixList[x + 1][y] == bigShip2Color ||
                                     matrixList[x + 1][y] == smallShip2Color ||
                                     matrixList[x + 1][y] == smallShipColor ||
+                                    matrixList[x + 2][y] == bigShip2Color ||
+                                    matrixList[x + 2][y] == smallShip2Color ||
+                                    matrixList[x + 2][y] == smallShipColor) {
+                                } else {
+                                  matrixList[x][y] = Colors.green;
+                                }
+                              }
+                            } else if (dragTargetDetails.data ==
+                                Colors.red[600]) {
+                              if (isBigShip2Rotate == 1) {
+                                if (y == 8 ||
+                                    y == 9 ||
+                                    y == 1 ||
+                                    y == 0 ||
+                                    matrixList[x][y - 1] == smallShip2Color ||
+                                    matrixList[x][y - 1] == smallShipColor ||
+                                    matrixList[x][y - 1] == bigShipColor ||
+                                    matrixList[x][y - 2] == smallShip2Color ||
+                                    matrixList[x][y - 2] == smallShipColor ||
+                                    matrixList[x][y - 2] == bigShipColor ||
+                                    matrixList[x][y + 1] == smallShip2Color ||
+                                    matrixList[x][y + 1] == smallShipColor ||
+                                    matrixList[x][y + 1] == bigShipColor ||
+                                    matrixList[x][y + 2] == smallShip2Color ||
+                                    matrixList[x][y + 2] == bigShipColor ||
+                                    matrixList[x][y + 2] == smallShipColor) {
+                                } else {
+                                  matrixList[x][y] = Colors.green;
+                                }
+                              } else {
+                                if (x == 8 ||
+                                    x == 9 ||
+                                    x == 1 ||
+                                    x == 0 ||
+                                    matrixList[x - 1][y] == smallShip2Color ||
+                                    matrixList[x - 1][y] == smallShipColor ||
+                                    matrixList[x - 1][y] == bigShipColor ||
+                                    matrixList[x - 2][y] == bigShipColor ||
+                                    matrixList[x - 2][y] == smallShip2Color ||
+                                    matrixList[x - 2][y] == smallShipColor ||
+                                    matrixList[x + 1][y] == bigShipColor ||
+                                    matrixList[x + 1][y] == smallShip2Color ||
+                                    matrixList[x + 1][y] == smallShipColor ||
+                                    matrixList[x + 2][y] == bigShipColor ||
                                     matrixList[x + 2][y] == smallShip2Color ||
                                     matrixList[x + 2][y] == smallShipColor) {
                                 } else {
@@ -92,8 +146,10 @@ class _MyMapState extends State<MyMap> {
                               if (isSmallShip2Rotate == 1) {
                                 if (y == 9 ||
                                     y == 0 ||
+                                    matrixList[x][y - 1] == bigShip2Color ||
                                     matrixList[x][y - 1] == smallShipColor ||
                                     matrixList[x][y - 1] == bigShipColor ||
+                                    matrixList[x][y + 1] == bigShip2Color ||
                                     matrixList[x][y + 1] == smallShipColor ||
                                     matrixList[x][y + 1] == bigShipColor) {
                                 } else {
@@ -102,8 +158,10 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 if (x == 9 ||
                                     x == 0 ||
+                                    matrixList[x - 1][y] == bigShip2Color ||
                                     matrixList[x - 1][y] == smallShipColor ||
                                     matrixList[x - 1][y] == bigShipColor ||
+                                    matrixList[x + 1][y] == bigShip2Color ||
                                     matrixList[x + 1][y] == smallShipColor ||
                                     matrixList[x + 1][y] == bigShipColor) {
                                 } else {
@@ -114,8 +172,10 @@ class _MyMapState extends State<MyMap> {
                               if (isSmallShipRotate == 1) {
                                 if (y == 9 ||
                                     y == 0 ||
+                                    matrixList[x][y - 1] == bigShip2Color ||
                                     matrixList[x][y - 1] == bigShipColor ||
                                     matrixList[x][y - 1] == smallShip2Color ||
+                                    matrixList[x][y + 1] == bigShip2Color ||
                                     matrixList[x][y + 1] == bigShipColor ||
                                     matrixList[x][y + 1] == smallShip2Color) {
                                 } else {
@@ -124,8 +184,10 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 if (x == 9 ||
                                     x == 0 ||
+                                    matrixList[x - 1][y] == bigShip2Color ||
                                     matrixList[x - 1][y] == bigShipColor ||
                                     matrixList[x - 1][y] == smallShip2Color ||
+                                    matrixList[x + 1][y] == bigShip2Color ||
                                     matrixList[x + 1][y] == bigShipColor ||
                                     matrixList[x + 1][y] == smallShip2Color) {
                                 } else {
@@ -142,6 +204,8 @@ class _MyMapState extends State<MyMap> {
                             matrixList[x][y] = smallShipColor;
                           } else if (matrixList[x][y] == smallShip2Color) {
                             matrixList[x][y] = smallShip2Color;
+                          } else if (matrixList[x][y] == bigShip2Color) {
+                            matrixList[x][y] = bigShip2Color;
                           } else {
                             if (data == Colors.red[400]) {
                               if (isBigShipRotate == 1) {
@@ -151,6 +215,12 @@ class _MyMapState extends State<MyMap> {
                               }
                             } else if (data == Colors.red[300]) {
                               if (isSmallShip2Rotate == 1) {
+                                matrixList[x][y] = mapColor;
+                              } else {
+                                matrixList[x][y] = mapColor;
+                              }
+                            } else if (data == Colors.red[600]) {
+                              if (isBigShip2Rotate == 1) {
                                 matrixList[x][y] = mapColor;
                               } else {
                                 matrixList[x][y] = mapColor;
@@ -174,14 +244,19 @@ class _MyMapState extends State<MyMap> {
                                     y == 9 ||
                                     y == 1 ||
                                     y == 0 ||
+                                    matrixList[x][y] == bigShip2Color ||
                                     matrixList[x][y] == smallShip2Color ||
                                     matrixList[x][y] == smallShipColor ||
+                                    matrixList[x][y - 1] == bigShip2Color ||
                                     matrixList[x][y - 1] == smallShip2Color ||
                                     matrixList[x][y - 1] == smallShipColor ||
+                                    matrixList[x][y - 2] == bigShip2Color ||
                                     matrixList[x][y - 2] == smallShip2Color ||
                                     matrixList[x][y - 2] == smallShipColor ||
+                                    matrixList[x][y + 1] == bigShip2Color ||
                                     matrixList[x][y + 1] == smallShip2Color ||
                                     matrixList[x][y + 1] == smallShipColor ||
+                                    matrixList[x][y + 2] == bigShip2Color ||
                                     matrixList[x][y + 2] == smallShip2Color ||
                                     matrixList[x][y + 2] == smallShipColor) {
                                 } else {
@@ -196,14 +271,19 @@ class _MyMapState extends State<MyMap> {
                                     x == 9 ||
                                     x == 1 ||
                                     x == 0 ||
+                                    matrixList[x][y] == bigShip2Color ||
                                     matrixList[x][y] == smallShip2Color ||
                                     matrixList[x][y] == smallShipColor ||
+                                    matrixList[x - 1][y] == bigShip2Color ||
                                     matrixList[x - 1][y] == smallShip2Color ||
                                     matrixList[x - 1][y] == smallShipColor ||
+                                    matrixList[x + 1][y] == bigShip2Color ||
                                     matrixList[x + 1][y] == smallShip2Color ||
                                     matrixList[x + 1][y] == smallShipColor ||
+                                    matrixList[x - 2][y] == bigShip2Color ||
                                     matrixList[x - 2][y] == smallShip2Color ||
                                     matrixList[x - 2][y] == smallShipColor ||
+                                    matrixList[x + 2][y] == bigShip2Color ||
                                     matrixList[x + 2][y] == smallShip2Color ||
                                     matrixList[x + 2][y] == smallShipColor) {
                                 } else {
@@ -214,14 +294,75 @@ class _MyMapState extends State<MyMap> {
                                   }
                                 }
                               }
+                            }
+
+                            if (data == Colors.red[600]) {
+                              if (isBigShip2Rotate == 1) {
+                                if (y == 8 ||
+                                    y == 9 ||
+                                    y == 1 ||
+                                    y == 0 ||
+                                    matrixList[x][y] == bigShipColor ||
+                                    matrixList[x][y] == smallShip2Color ||
+                                    matrixList[x][y] == smallShipColor ||
+                                    matrixList[x][y - 1] == bigShipColor ||
+                                    matrixList[x][y - 1] == smallShip2Color ||
+                                    matrixList[x][y - 1] == smallShipColor ||
+                                    matrixList[x][y - 2] == bigShipColor ||
+                                    matrixList[x][y - 2] == smallShip2Color ||
+                                    matrixList[x][y - 2] == smallShipColor ||
+                                    matrixList[x][y + 1] == bigShipColor ||
+                                    matrixList[x][y + 1] == smallShip2Color ||
+                                    matrixList[x][y + 1] == smallShipColor ||
+                                    matrixList[x][y + 2] == bigShipColor ||
+                                    matrixList[x][y + 2] == smallShip2Color ||
+                                    matrixList[x][y + 2] == smallShipColor) {
+                                } else {
+                                  for (int i = 2; i > -3; i--) {
+                                    matrixList[x][y - i] = bigShip2Color;
+                                    dummyListBig2Reverse.insert(
+                                        0, (10 * x) + y - i);
+                                  }
+                                }
+                              } else {
+                                if (x == 8 ||
+                                    x == 9 ||
+                                    x == 1 ||
+                                    x == 0 ||
+                                    matrixList[x][y] == bigShipColor ||
+                                    matrixList[x][y] == smallShip2Color ||
+                                    matrixList[x][y] == smallShipColor ||
+                                    matrixList[x - 1][y] == bigShipColor ||
+                                    matrixList[x - 1][y] == smallShip2Color ||
+                                    matrixList[x - 1][y] == smallShipColor ||
+                                    matrixList[x + 1][y] == bigShipColor ||
+                                    matrixList[x + 1][y] == smallShip2Color ||
+                                    matrixList[x + 1][y] == smallShipColor ||
+                                    matrixList[x - 2][y] == bigShipColor ||
+                                    matrixList[x - 2][y] == smallShip2Color ||
+                                    matrixList[x - 2][y] == smallShipColor ||
+                                    matrixList[x + 2][y] == bigShipColor ||
+                                    matrixList[x + 2][y] == smallShip2Color ||
+                                    matrixList[x + 2][y] == smallShipColor) {
+                                } else {
+                                  for (int i = 2; i > -3; i--) {
+                                    matrixList[x - i][y] = bigShip2Color;
+                                    dummyListBig2Reverse.insert(
+                                        0, (10 * (x - i)) + y);
+                                  }
+                                }
+                              }
                             } else if (data == Colors.red[200]) {
                               if (isSmallShipRotate == 1) {
                                 if (y == 9 ||
                                     y == 0 ||
+                                    matrixList[x][y] == bigShip2Color ||
                                     matrixList[x][y] == smallShip2Color ||
                                     matrixList[x][y] == bigShipColor ||
+                                    matrixList[x][y - 1] == bigShip2Color ||
                                     matrixList[x][y - 1] == smallShip2Color ||
                                     matrixList[x][y - 1] == bigShipColor ||
+                                    matrixList[x][y + 1] == bigShip2Color ||
                                     matrixList[x][y + 1] == smallShip2Color ||
                                     matrixList[x][y + 1] == bigShipColor) {
                                 } else {
@@ -234,10 +375,13 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 if (x == 0 ||
                                     x == 9 ||
+                                    matrixList[x][y] == bigShip2Color ||
                                     matrixList[x][y] == smallShip2Color ||
                                     matrixList[x][y] == bigShipColor ||
+                                    matrixList[x - 1][y] == bigShip2Color ||
                                     matrixList[x - 1][y] == smallShip2Color ||
                                     matrixList[x - 1][y] == bigShipColor ||
+                                    matrixList[x + 1][y] == bigShip2Color ||
                                     matrixList[x + 1][y] == smallShip2Color ||
                                     matrixList[x + 1][y] == bigShipColor) {
                                 } else {
@@ -252,10 +396,13 @@ class _MyMapState extends State<MyMap> {
                               if (isSmallShip2Rotate == 1) {
                                 if (y == 0 ||
                                     y == 9 ||
+                                    matrixList[x][y] == bigShip2Color ||
                                     matrixList[x][y] == bigShipColor ||
                                     matrixList[x][y] == smallShipColor ||
+                                    matrixList[x][y + 1] == bigShip2Color ||
                                     matrixList[x][y + 1] == smallShipColor ||
                                     matrixList[x][y + 1] == bigShipColor ||
+                                    matrixList[x][y - 1] == bigShip2Color ||
                                     matrixList[x][y - 1] == smallShipColor ||
                                     matrixList[x][y - 1] == bigShipColor) {
                                 } else {
@@ -268,10 +415,13 @@ class _MyMapState extends State<MyMap> {
                               } else {
                                 if (x == 0 ||
                                     x == 9 ||
+                                    matrixList[x][y] == bigShip2Color ||
                                     matrixList[x][y] == bigShipColor ||
                                     matrixList[x][y] == smallShipColor ||
+                                    matrixList[x + 1][y] == bigShip2Color ||
                                     matrixList[x + 1][y] == smallShipColor ||
                                     matrixList[x + 1][y] == bigShipColor ||
+                                    matrixList[x - 1][y] == bigShip2Color ||
                                     matrixList[x - 1][y] == smallShipColor ||
                                     matrixList[x - 1][y] == bigShipColor) {
                                 } else {
@@ -287,6 +437,11 @@ class _MyMapState extends State<MyMap> {
                             for (int i in [0, 1, 2, 3, 4]) {
                               dummyListBig[i] = (dummyListBigReverse[i] ~/ 10 +
                                   (dummyListBigReverse[i] % 10) * 10);
+                            }
+                            for (int i in [0, 1, 2, 3, 4]) {
+                              dummyListBig2[i] =
+                                  (dummyListBig2Reverse[i] ~/ 10 +
+                                      (dummyListBig2Reverse[i] % 10) * 10);
                             }
                             for (int i in [0, 1, 2]) {
                               dummyListSmall[i] =

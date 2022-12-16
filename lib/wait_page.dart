@@ -1,10 +1,12 @@
-import 'package:battleships/firebase_database_functions.dart';
-import 'package:battleships/global_enough_player.dart';
-import 'package:battleships/view/gameStarted.dart';
-import 'package:battleships/viewmodel/main_menu.dart';
+import 'package:restart_app/restart_app.dart';
+
+import '../firebase_database_functions.dart';
+import '../global_enough_player.dart';
+import '../view/gameStarted.dart';
+import '../viewmodel/main_menu.dart';
+import 'enough_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'enough_player.dart';
 
 class WaitPage extends StatefulWidget {
   const WaitPage({super.key});
@@ -31,16 +33,17 @@ class _WaitPageState extends State<WaitPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => const MainMenu()),
-                        ),
-                      );
-                    },
-                    child: const Icon(Icons.close)),
+                TextButton(
+                  child: const Text(
+                    "CANCEL",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    cancelGame(context);
+
+                    Restart.restartApp();
+                  },
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -58,22 +61,9 @@ class _WaitPageState extends State<WaitPage> {
                   ),
                 if (!globalEnoughPlayer.playerEnough)
                   const Text('Waiting Second Player...'),
-                /*IgnorePointer(
-                  ignoring: playerEnough,
-                  child: TextButton(
-                    onPressed: () {
-                      playerMatch();
-                    },
-                    child: Text("Game Found"),
-                  ),
-                ),*/
               ]),
         );
       }),
     );
-
-    /* SafeArea(
-      child: 
-    );*/
   }
 }

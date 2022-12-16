@@ -1,4 +1,4 @@
-import 'package:battleships/view/homepage.dart';
+import '../view/homepage.dart';
 import 'package:flutter/material.dart';
 
 class MainMenu extends StatelessWidget {

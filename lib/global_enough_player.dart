@@ -1,5 +1,5 @@
-import 'package:battleships/enough_player.dart';
-import 'package:battleships/whose_turn.dart';
+import '../enough_player.dart';
+import '../whose_turn.dart';
 import 'game_finished.dart';
 
 final globalEnoughPlayer = EnoughPlayer();

@@ -1,8 +1,8 @@
-import 'package:battleships/firebase_database_functions.dart';
-import 'package:battleships/view/map.dart';
-import 'package:battleships/wait_page.dart';
+import '../firebase_database_functions.dart';
+import '../wait_page.dart';
+import '../view/map.dart';
+import '../viewmodel/shipsandrotate.dart';
 import 'package:flutter/material.dart';
-import 'package:battleships/viewmodel/shipsandrotate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,18 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  denemeFunc() {
-    if (isBigVisible == true &&
-        isSmall2Visible == true &&
-        isSmallVisible == true) {
-      isStartButtonVisible = true;
-    }
-  }
-
-  int numberOfSquares = 100;
-
-  int isHit = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +71,13 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               width: 30,
                               child: const BigShip(),
+                            ),
+                            const SizedBox(
+                              width: 100,
+                            ),
+                            Container(
+                              width: 30,
+                              child: const BigShip2(),
                             ),
                           ],
                         ),
