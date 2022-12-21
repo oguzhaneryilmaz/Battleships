@@ -65,7 +65,7 @@ class _GameStartedState extends State<GameStarted> {
                             child: const Text(
                               "1",
                               style: TextStyle(
-                                fontSize: 5,
+                                fontSize: 1,
                               ),
                             ),
                           );
@@ -88,7 +88,7 @@ class _GameStartedState extends State<GameStarted> {
                             child: const Text(
                               "1",
                               style: TextStyle(
-                                fontSize: 5,
+                                fontSize: 1,
                               ),
                             ),
                           );
@@ -111,7 +111,7 @@ class _GameStartedState extends State<GameStarted> {
                             child: const Text(
                               "1",
                               style: TextStyle(
-                                fontSize: 5,
+                                fontSize: 1,
                               ),
                             ),
                           );
@@ -134,7 +134,7 @@ class _GameStartedState extends State<GameStarted> {
                             child: const Text(
                               "1",
                               style: TextStyle(
-                                fontSize: 5,
+                                fontSize: 1,
                               ),
                             ),
                           );
@@ -154,16 +154,18 @@ class _GameStartedState extends State<GameStarted> {
                       for (int i = 0; i < 100; i++) {
                         if (enemySmallShipLocation[i] != index ||
                             enemyBigShipLocation[i] != index ||
-                            enemySmallShip2Location[i] != index) {
+                            enemySmallShip2Location[i] != index ||
+                            enemyBigShip2Location[i] != index) {
                           return MyPixel(
                             color: wrongSelectedBig[index] == "second" ||
+                                    wrongSelectedBig2[index] == "second" ||
                                     wrongSelectedSmall[index] == "second" ||
                                     wrongSelectedSmall2[index] == "second"
                                 ? hitSeaColor
                                 : mapColor,
                             child: const Text(
                               "0",
-                              style: TextStyle(fontSize: 5),
+                              style: TextStyle(fontSize: 1),
                             ),
                             onTap: () {
                               setState(() {

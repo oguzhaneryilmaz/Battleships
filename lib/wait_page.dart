@@ -33,17 +33,18 @@ class _WaitPageState extends State<WaitPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                TextButton(
-                  child: const Text(
-                    "CANCEL",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    cancelGame(context);
+                if (!globalEnoughPlayer.playerEnough)
+                  TextButton(
+                    child: const Text(
+                      "CANCEL",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    onPressed: () {
+                      cancelGame(context);
 
-                    Restart.restartApp();
-                  },
-                ),
+                      Restart.restartApp();
+                    },
+                  ),
                 const SizedBox(
                   height: 20,
                 ),
