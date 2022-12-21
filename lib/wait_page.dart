@@ -1,9 +1,9 @@
 import 'package:restart_app/restart_app.dart';
+import 'package:animated_background/animated_background.dart';
 
 import '../firebase_database_functions.dart';
 import '../global_enough_player.dart';
 import '../view/gameStarted.dart';
-import '../viewmodel/main_menu.dart';
 import 'enough_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -15,54 +15,68 @@ class WaitPage extends StatefulWidget {
   State<WaitPage> createState() => _WaitPageState();
 }
 
-class _WaitPageState extends State<WaitPage> {
+class _WaitPageState extends State<WaitPage> with TickerProviderStateMixin {
   final enoughPlayer = EnoughPlayer();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Observer(builder: (_) {
-        return Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  "Waiting for an opponent",
-                  style: TextStyle(fontSize: 20, color: Colors.red),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                if (!globalEnoughPlayer.playerEnough)
-                  TextButton(
-                    child: const Text(
-                      "CANCEL",
-                      style: TextStyle(fontSize: 20),
+        return AnimatedBackground(
+          behaviour: BubblesBehaviour(
+              options: const BubbleOptions(
+            bubbleCount: 6,
+          )),
+          vsync: this,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Waiting for an opponent",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue.shade200,
                     ),
-                    onPressed: () {
-                      cancelGame(context);
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  if (!globalEnoughPlayer.playerEnough)
+                    TextButton(
+                      child: Text(
+                        "CANCEL",
+                        style: TextStyle(
+                            fontSize: 20, color: Colors.blue.shade300),
+                      ),
+                      onPressed: () {
+                        cancelGame(context);
 
-                      Restart.restartApp();
-                    },
+                        Restart.restartApp();
+                      },
+                    ),
+                  const SizedBox(
+                    height: 20,
                   ),
-                const SizedBox(
-                  height: 20,
-                ),
-                if (globalEnoughPlayer.playerEnough)
-                  TextButton(
-                    onPressed: () {
-                      playerMatch();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const GameStarted(),
-                          ));
-                    },
-                    child: const Text("Game Found"),
-                  ),
-                if (!globalEnoughPlayer.playerEnough)
-                  const Text('Waiting Second Player...'),
-              ]),
+                  if (globalEnoughPlayer.playerEnough)
+                    TextButton(
+                      onPressed: () {
+                        playerMatch();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const GameStarted(),
+                            ));
+                      },
+                      child: const Text("Game Found"),
+                    ),
+                  if (!globalEnoughPlayer.playerEnough)
+                    Text(
+                      'Waiting Second Player...',
+                      style: TextStyle(color: Colors.blue.shade400),
+                    ),
+                ]),
+          ),
         );
       }),
     );

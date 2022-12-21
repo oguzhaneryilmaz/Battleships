@@ -1,13 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import '../viewmodel/main_menu.dart';
 import '../viewmodel/defineLists.dart';
 import '../viewmodel/pixel.dart';
 import '../view/map.dart';
 import '../firebase_database_functions.dart';
 import '../global_enough_player.dart';
-import 'package:just_audio/just_audio.dart';
 
 class GameStarted extends StatefulWidget {
   const GameStarted({super.key});
