@@ -7,6 +7,7 @@ import '../viewmodel/pixel.dart';
 import '../view/map.dart';
 import '../firebase_database_functions.dart';
 import '../global_enough_player.dart';
+import 'package:just_audio/just_audio.dart';
 
 class GameStarted extends StatefulWidget {
   const GameStarted({super.key});
@@ -18,6 +19,8 @@ class GameStarted extends StatefulWidget {
 class _GameStartedState extends State<GameStarted> {
   int numberOfSquares = 100;
   int clickedContainer = 0;
+
+  final AudioPlayer _player = AudioPlayer();
 
   Color hitShipColor = Colors.red;
   Color hitSeaColor = Colors.yellow;
@@ -51,7 +54,10 @@ class _GameStartedState extends State<GameStarted> {
                       for (int i = 0; i < 5; i++) {
                         if (enemyBigShipLocation[i] == index) {
                           return MyPixel(
-                            onTap: () {
+                            onTap: () async {
+                              await _player.setAsset(
+                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player.play();
                               setState(() {
                                 if (trueSelectedBig[i] == "first") {
                                   remainingHits();
@@ -74,7 +80,10 @@ class _GameStartedState extends State<GameStarted> {
                       for (int i = 0; i < 5; i++) {
                         if (enemyBigShip2Location[i] == index) {
                           return MyPixel(
-                            onTap: () {
+                            onTap: () async {
+                              await _player.setAsset(
+                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player.play();
                               setState(() {
                                 if (trueSelectedBig2[i] == "first") {
                                   remainingHits();
@@ -97,7 +106,10 @@ class _GameStartedState extends State<GameStarted> {
                       for (int i = 0; i < 3; i++) {
                         if (enemySmallShipLocation[i] == index) {
                           return MyPixel(
-                            onTap: () {
+                            onTap: () async {
+                              await _player.setAsset(
+                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player.play();
                               setState(() {
                                 if (trueSelectedSmall[i] == "first") {
                                   remainingHits();
@@ -120,7 +132,10 @@ class _GameStartedState extends State<GameStarted> {
                       for (int i = 0; i < 3; i++) {
                         if (enemySmallShip2Location[i] == index) {
                           return MyPixel(
-                            onTap: () {
+                            onTap: () async {
+                              await _player.setAsset(
+                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player.play();
                               setState(() {
                                 if (trueSelectedSmall2[i] == "first") {
                                   remainingHits();
