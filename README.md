@@ -18,7 +18,7 @@ Kullanılan diller:
 <a href="https://dart.dev/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png" alt="Dart" width="40" height="40"/> </a> 
 <h2 align="center" >EN</h3>
 
-Battleship is an multiplayer cross platform game that can run in iOS,macOS,Web and Android devices.
+Battleship is a multiplayer cross platform game that can run in iOS,macOS,Web and Android devices.
 
 <h3>How To Play</h3>
 
