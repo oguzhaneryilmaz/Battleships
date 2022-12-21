@@ -55,8 +55,8 @@ class _GameStartedState extends State<GameStarted> {
                         if (enemyBigShipLocation[i] == index) {
                           return MyPixel(
                             onTap: () async {
-                              await _player.setAsset(
-                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player
+                                  .setAsset("lib/assets/audio/explosion.mp3");
                               await _player.play();
                               setState(() {
                                 if (trueSelectedBig[i] == "first") {
@@ -81,8 +81,8 @@ class _GameStartedState extends State<GameStarted> {
                         if (enemyBigShip2Location[i] == index) {
                           return MyPixel(
                             onTap: () async {
-                              await _player.setAsset(
-                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player
+                                  .setAsset("lib/assets/audio/explosion.mp3");
                               await _player.play();
                               setState(() {
                                 if (trueSelectedBig2[i] == "first") {
@@ -107,8 +107,8 @@ class _GameStartedState extends State<GameStarted> {
                         if (enemySmallShipLocation[i] == index) {
                           return MyPixel(
                             onTap: () async {
-                              await _player.setAsset(
-                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player
+                                  .setAsset("lib/assets/audio/explosion.mp3");
                               await _player.play();
                               setState(() {
                                 if (trueSelectedSmall[i] == "first") {
@@ -133,8 +133,8 @@ class _GameStartedState extends State<GameStarted> {
                         if (enemySmallShip2Location[i] == index) {
                           return MyPixel(
                             onTap: () async {
-                              await _player.setAsset(
-                                  "lib/assets/audio/small-bomb-explosion-sound-effect.mp3");
+                              await _player
+                                  .setAsset("lib/assets/audio/explosion.mp3");
                               await _player.play();
                               setState(() {
                                 if (trueSelectedSmall2[i] == "first") {
@@ -182,7 +182,10 @@ class _GameStartedState extends State<GameStarted> {
                               "0",
                               style: TextStyle(fontSize: 1),
                             ),
-                            onTap: () {
+                            onTap: () async {
+                              await _player
+                                  .setAsset("lib/assets/audio/miss.mp3");
+                              await _player.play();
                               setState(() {
                                 FirebaseDatabase.instance
                                     .ref()
